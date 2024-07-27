@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "b010bc08-4871-47b7-82f7-d1ba885bd74d",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 960,
+  "height": 1067,
+  "platformSettings": {},
+  "subMetas": {
+    "nghé game 4_00006": {
+      "ver": "1.0.6",
+      "uuid": "265f3cd0-847d-4e87-ba74-8dc47c94c1aa",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "b010bc08-4871-47b7-82f7-d1ba885bd74d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -90,
+      "trimX": 4,
+      "trimY": 248,
+      "width": 952,
+      "height": 751,
+      "rawWidth": 960,
+      "rawHeight": 1067,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

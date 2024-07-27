@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "5dfa4eb6-8dbe-4a32-a524-0fe9e120feab",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 884,
+  "height": 60,
+  "platformSettings": {},
+  "subMetas": {
+    "Progress bar2 #2698": {
+      "ver": "1.0.6",
+      "uuid": "771a2bbd-079f-4bda-8c98-16df7dd993fe",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "5dfa4eb6-8dbe-4a32-a524-0fe9e120feab",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 884,
+      "height": 60,
+      "rawWidth": 884,
+      "rawHeight": 60,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
