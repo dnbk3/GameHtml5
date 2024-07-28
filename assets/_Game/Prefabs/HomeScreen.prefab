@@ -37,9 +37,13 @@
       }
     ],
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 90
+      }
+    ],
     "_prefab": {
-      "__id__": 89
+      "__id__": 91
     },
     "_opacity": 255,
     "_color": {
@@ -2873,11 +2877,11 @@
         "__id__": 86
       },
       {
-        "__id__": 87
+        "__id__": 88
       }
     ],
     "_prefab": {
-      "__id__": 88
+      "__id__": 89
     },
     "_opacity": 255,
     "_color": {
@@ -3070,7 +3074,9 @@
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
-      null
+      {
+        "__id__": 87
+      }
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
@@ -3128,6 +3134,16 @@
     "_id": ""
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "",
+    "_componentId": "721404sJQhOt6UbRyLde/+N",
+    "handler": "onClickStartGame",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -3169,6 +3185,19 @@
     },
     "fileId": "9aEHzJ9upMYbaVhB1ljt/2",
     "sync": false
+  },
+  {
+    "__type__": "721404sJQhOt6UbRyLde/+N",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "btnStartGame": {
+      "__id__": 81
+    },
+    "_id": ""
   },
   {
     "__type__": "cc.PrefabInfo",

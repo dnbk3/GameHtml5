@@ -14,14 +14,17 @@ export default class Timer extends cc.Component {
 
     @property(cc.Label) text: cc.Label = null;
     @property(cc.Boolean) enableCountDown: boolean = false;
-    @property private time: number = 60;
+    @property time: number = 60;
+    private _time: number = 0;
 
     protected onLoad(): void {
         this.text.string = Utilities.formatTime(this.time);
+        this._time = this.time;
     }
 
     startCountDown() {
         this.enableCountDown = true;
+        this._time = this.time;
     }
 
     stopCountDown() {
@@ -31,13 +34,13 @@ export default class Timer extends cc.Component {
     protected update(dt: number): void {
         if (!this.enableCountDown) return;
 
-        this.time -= dt;
-        if (this.time <= 0) {
-            this.time = 0;
+        this._time -= dt;
+        if (this._time <= 0) {
+            this._time = 0;
             this.fireEventTimeOut();
             this.enableCountDown = false;
         }
-        this.text.string = Utilities.formatTime(this.time);
+        this.text.string = Utilities.formatTime(this._time);
     }
 
     fireEventTimeOut() {

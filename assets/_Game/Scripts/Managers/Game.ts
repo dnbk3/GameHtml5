@@ -31,6 +31,7 @@ export default class Game extends cc.Component {
     @property(SkakeFxCompont) skakeFx: SkakeFxCompont = null;
     @property([cc.Node]) listNodePosClock: cc.Node[] = [];
     @property(ResultTimeFrame) resultTimeFrame: ResultTimeFrame = null;
+    @property(cc.Node) rays: cc.Node = null;
 
     private enableAction: boolean = false;
 
@@ -58,7 +59,8 @@ export default class Game extends cc.Component {
 
     showRecoment() {
         if (!this.enableAction) return;
-
+        this.listClock[this.resultIndex].showShadow(1.9);
+        Constants.soundManager.playClip(19);
         this.skakeFx.shake(this.listClock[this.resultIndex].node, 1.9, 5, 5);
     }
 
@@ -66,12 +68,13 @@ export default class Game extends cc.Component {
     }
 
     protected start(): void {
-        this.playGame();
+        Constants.uiManager.onOpen(0);
     }
 
     checkResult(clock: Clock) {
         if (!this.enableAction) return;
         this.enableAction = false;
+        this.skakeFx.stopShake();
         if (clock.currentTimeGio == this.resultTime) {
             this.onCorrectAnswer(clock);
         }
@@ -81,8 +84,9 @@ export default class Game extends cc.Component {
     }
 
     onCorrectAnswer(clock: Clock) {
-        this.player.playAnimHappy();
 
+        this.player.playAnimHappy();
+        this.activeRay(false);
         this.listClock.forEach((clockList) => {
             if (clock != clockList) {
                 SimplePool.despawn(clockList)
@@ -99,6 +103,7 @@ export default class Game extends cc.Component {
             .to(duration, { x: targetPos.x, y: targetPos.y, scale: 1.2 })
             .call(() => {
                 this.resultTimeFrame.setTime(this.resultTime);
+                this.skakeFx.shake(clock.node, 1.5)
             })
             .start();
 
@@ -108,8 +113,10 @@ export default class Game extends cc.Component {
     afterCorrectAnswer() {
         this.questionCount++;
         this.resultTimeFrame.setDeactive();
-        if (this.questionCount >= 5) {
+        if (this.questionCount >= 2) {
             this.stopGame();
+            Constants.uiManager.onOpen(2);
+            this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_RESULT_UI);
         }
         else {
             this.initQuestion();
@@ -126,19 +133,22 @@ export default class Game extends cc.Component {
 
     afterWrongAnswer() {
         this.enableAction = true;
+        this.initCountTime();
         this.player.playAnimIdle();
     }
 
     playGame() {
+        this.activeRay(true);
+        Constants.uiManager.onOpen(1);
         this.questionCount = 0;
-        this.initCountTime();
+        this.player.playAnimIdle();
         this.initQuestion();
         this.node.emit(Constants.GAME_EVENT.START_COUNT_DOWN);
     }
 
     initQuestion() {
         this.enableAction = true;
-
+        this.initCountTime();
         this.listClock.forEach((clock) => {
             SimplePool.despawn(clock.getComponent(PoolMember));
         });
@@ -187,6 +197,7 @@ export default class Game extends cc.Component {
     }
 
     stopGame() {
+        this.enableAction = false;
         this.node.emit(Constants.GAME_EVENT.STOP_COUNT_DOWN);
     }
 
@@ -197,8 +208,6 @@ export default class Game extends cc.Component {
         clock.node.setScale(0.7);
         this.listClock.push(clock);
     }
-
-
 
     getThreePoolType(): PoolType[] {
         var arrPoolType = [PoolType.Clock1, PoolType.Clock2, PoolType.Clock3, PoolType.Clock4];
@@ -217,5 +226,9 @@ export default class Game extends cc.Component {
         else {
             return 3;
         }
+    }
+
+    activeRay(active: boolean) {
+        this.rays.active = active;
     }
 }

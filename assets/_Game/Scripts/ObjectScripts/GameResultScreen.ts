@@ -14,9 +14,10 @@ const { ccclass, property } = cc._decorator;
 export default class GameResultScreen extends cc.Component {
 
     @property(Stars) stars: Stars = null;
+    @property(cc.Node) frame: cc.Node = null;
 
-    protected start(): void {
-        this.stars.setStar(3);
+    protected onLoad(): void {
+        this.bindingEvent();
     }
 
     bindingEvent() {
@@ -24,6 +25,25 @@ export default class GameResultScreen extends cc.Component {
     }
 
     applyDataToGameResultUI() {
-        this.stars.setStar(Constants.game.getRatingStar());
+        Constants.soundManager.playClip(22)
+        this.frame.setScale(0);
+        cc.tween(this.frame)
+            .to(1, { scale: 1.5 }, { easing: 'backOut' })
+            .start();
+        this.stars.setStar(Constants.game.getRatingStar(), 1.5);
+    }
+
+    rePlaygame() {
+        Constants.soundManager.playClip(18);
+        Constants.uiManager.onClose(2);
+        Constants.uiManager.onOpen(1);
+        Constants.game.playGame();
+    }
+
+    home() {
+        Constants.soundManager.playClip(18);
+        Constants.uiManager.onClose(2);
+        Constants.uiManager.onClose(1);
+        Constants.uiManager.onOpen(0);
     }
 }

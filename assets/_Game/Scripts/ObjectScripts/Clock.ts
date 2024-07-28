@@ -30,11 +30,19 @@ export default class Clock extends PoolMember {
     }
 
     protected start(): void {
+        this.shadow.active = false;
         this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
     }
 
     private onTouchEnd() {
         Constants.game.checkResult(this);
+    }
+
+    showShadow(time: number) {
+        this.shadow.active = true;
+        setTimeout(() => {
+            this.shadow.active = false;
+        }, time * 1000);
     }
 
     setGio(gio: number) {
