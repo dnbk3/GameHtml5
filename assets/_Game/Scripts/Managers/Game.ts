@@ -43,6 +43,8 @@ export default class Game extends cc.Component {
     private enableCountTime: boolean = false;
     private timeCount: number = 6;
 
+    private prevalTime: number = -1;
+
     protected update(dt: number): void {
         if (!this.enableCountTime) return;
         this.timeCount -= dt;
@@ -60,8 +62,7 @@ export default class Game extends cc.Component {
     showRecoment() {
         if (!this.enableAction) return;
         this.listClock[this.resultIndex].showShadow(1.9);
-        Constants.soundManager.playClip(19);
-        this.skakeFx.shake(this.listClock[this.resultIndex].node, 1.9, 5, 5);
+        this.skakeFx.shake(this.listClock[this.resultIndex].node, 1.9, 5, 5, true);
     }
 
     protected onLoad(): void {
@@ -113,7 +114,7 @@ export default class Game extends cc.Component {
     afterCorrectAnswer() {
         this.questionCount++;
         this.resultTimeFrame.setDeactive();
-        if (this.questionCount >= 2) {
+        if (this.questionCount >= 5) {
             this.stopGame();
             Constants.uiManager.onOpen(2);
             this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_RESULT_UI);
@@ -166,6 +167,10 @@ export default class Game extends cc.Component {
 
     settingValue() {
         this.resultTime = Math.floor(Math.random() * 12) + 1;
+        while (this.resultTime == this.prevalTime) {
+            this.resultTime = Math.floor(Math.random() * 12) + 1;
+        }
+
         var time1 = Utilities.getRandomIntIgnore(1, 13, this.resultTime);
         var time2 = Utilities.getRandomIntIgnore(1, 13, this.resultTime);
         while (time1 == time2) {
@@ -189,6 +194,8 @@ export default class Game extends cc.Component {
                 }
             }
         });
+
+        this.prevalTime = this.resultTime;
     }
 
     applyValue() {

@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import { Constants } from "../Managers/Constants";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -18,12 +20,12 @@ export default class SkakeFxCompont extends cc.Component {
 
     private nodeObj: cc.Node = null;
 
-    public shake(obj: cc.Node, shakeDuration: number = 1, shakeMagnitude: number = 20, shakeSpeed: number = 1) {
+    public shake(obj: cc.Node, shakeDuration: number = 1, shakeMagnitude: number = 20, shakeSpeed: number = 1, playaudio: boolean = false) {
 
         if (this.nodeObj) {
             this.stopShake();
         }
-
+        playaudio && Constants.soundManager.playClip(19);
         this.shakeDuration = shakeDuration;
         this.shakeMagnitude = shakeMagnitude;
         this.shakeSpeed = shakeSpeed;
@@ -33,6 +35,7 @@ export default class SkakeFxCompont extends cc.Component {
 
     stopShake() {
         if (!this.nodeObj) return;
+        Constants.soundManager.stopClip(19);
         this.nodeObj.angle = 0;
         this.nodeObj = null;
     }

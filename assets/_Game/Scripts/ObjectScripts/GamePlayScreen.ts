@@ -16,8 +16,18 @@ export default class GamePlayScreen extends cc.Component {
     @property(cc.Label) text: cc.Label = null;
     @property(Timer) timer: Timer = null;
 
+    @property(cc.Node) tl: cc.Node = null;
+
     protected onLoad(): void {
         this.bindingEvent();
+
+        // this.resize();
+        // cc.view.setResizeCallback(this.resize.bind(this));
+
+    }
+
+    resize() {
+
     }
 
     onClickBack() { }
