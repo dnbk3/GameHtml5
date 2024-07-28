@@ -16,6 +16,8 @@ export default class Clock extends PoolMember {
     @property(cc.Node) kg: cc.Node = null;
     @property(cc.Node) kp: cc.Node = null;
 
+    @property(cc.Node) shadow: cc.Node = null;
+
     private _currentTimeGio: number = 0;
     private _currentTimePhut: number = 0;
 

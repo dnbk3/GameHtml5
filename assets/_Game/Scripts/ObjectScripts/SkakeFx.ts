@@ -36,28 +36,10 @@ export default class SkakeFxCompont extends cc.Component {
         this.nodeObj = obj;
     }
 
-    // private IEnumerator ShakeObject(GameObject obj) {
-    //     Quaternion originalRotation = obj.transform.localRotation;
-    //     float elapsedTime = 0f;
-
-    //     while (elapsedTime < shakeDuration) {
-    //         float angle = Mathf.Sin(elapsedTime * Mathf.PI * 4 * shakeSpeed) * shakeMagnitude;
-    //         obj.transform.localRotation = originalRotation * Quaternion.Euler(0, 0, angle);
-
-    //         elapsedTime += Time.deltaTime;
-    //         yield return null;
-    //     }
-
-    //     obj.transform.localRotation = originalRotation;
-    // }
-
     protected update(dt: number): void {
         if (!this.enableShake) return;
         var angle = Math.sin(this.elapsedTime * Math.PI * 4 * this.shakeSpeed) * this.shakeMagnitude;
         this.nodeObj.angle = angle;
-        console.log("update");
-
-
         this.elapsedTime += dt;
         if (this.elapsedTime >= this.shakeDuration) {
             this.enableShake = false;

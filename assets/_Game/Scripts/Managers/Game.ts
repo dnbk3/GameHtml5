@@ -8,6 +8,7 @@
 import Utilities from "../Helper/Utilities";
 import Clock from "../ObjectScripts/Clock";
 import Player from "../ObjectScripts/Player";
+import ResultTimeFrame from "../ObjectScripts/ResuiltTimeFrame";
 import SkakeFxCompont from "../ObjectScripts/SkakeFx";
 import PoolControl from "../Pool/PoolControl";
 import PoolMember from "../Pool/PoolMember";
@@ -29,6 +30,7 @@ export default class Game extends cc.Component {
     @property(Player) player: Player = null;
     @property(SkakeFxCompont) skakeFx: SkakeFxCompont = null;
     @property([cc.Node]) listNodePosClock: cc.Node[] = [];
+    @property(ResultTimeFrame) resultTimeFrame: ResultTimeFrame = null;
 
     private enableAction: boolean = false;
 
@@ -95,6 +97,9 @@ export default class Game extends cc.Component {
         const duration = distance / Constants.moveSpeed;
         cc.tween(clock.node)
             .to(duration, { x: targetPos.x, y: targetPos.y, scale: 1.2 })
+            .call(() => {
+                this.resultTimeFrame.setTime(this.resultTime);
+            })
             .start();
 
         setTimeout(this.afterCorrectAnswer.bind(this), 4000);
@@ -102,6 +107,7 @@ export default class Game extends cc.Component {
 
     afterCorrectAnswer() {
         this.questionCount++;
+        this.resultTimeFrame.setDeactive();
         if (this.questionCount >= 5) {
             this.stopGame();
         }
@@ -178,7 +184,6 @@ export default class Game extends cc.Component {
     applyValue() {
         this.player.setText(Utilities.getTimeStringFromHour(this.resultTime));
         this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI, this.resultTime);
-        console.log("resultTime: " + this.resultTime);
     }
 
     stopGame() {
@@ -200,5 +205,17 @@ export default class Game extends cc.Component {
         var int = Math.floor(Math.random() * 4);
         arrPoolType.splice(int, 1);
         return arrPoolType;
+    }
+
+    getRatingStar(): number {
+        if (this.questionCount < 3) {
+            return 1;
+        }
+        else if (this.questionCount <= 5) {
+            return 2;
+        }
+        else {
+            return 3;
+        }
     }
 }

@@ -18,6 +18,7 @@ enum GAME_STATE {
 enum GAME_EVENT {
     NONE = "none",
     APPLY_DATA_TO_GAME_PLAY_UI = "apply_data_to_game_play_ui",
+    APPLY_DATA_TO_GAME_RESULT_UI = "apply_data_to_game_result_ui",
     START_COUNT_DOWN = "start_count_down",
     STOP_COUNT_DOWN = "stop_count_down",
 }
