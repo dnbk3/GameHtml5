@@ -224,10 +224,10 @@ export default class Game extends cc.Component {
     }
 
     getRatingStar(): number {
-        if (this.questionCount < 3) {
+        if (this.questionCount < 2) {
             return 1;
         }
-        else if (this.questionCount <= 5) {
+        else if (this.questionCount <= 4) {
             return 2;
         }
         else {
