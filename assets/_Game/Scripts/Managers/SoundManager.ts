@@ -9,11 +9,6 @@ import { Constants } from "./Constants";
 
 const { ccclass, property, disallowMultiple } = cc._decorator;
 
-export enum AudioType {
-
-}
-
-
 @ccclass
 @disallowMultiple
 export default class SoundManager extends cc.Component {
@@ -35,7 +30,7 @@ export default class SoundManager extends cc.Component {
         this.eventSound();
     }
 
-    public playClip(type: AudioType, loop: boolean = false, volume: number = 1): void {
+    public playClip(type: number, loop: boolean = false, volume: number = 1): void {
         if (!Constants.enableSound) return;
 
         this.audies[type].volume = volume;
@@ -43,7 +38,7 @@ export default class SoundManager extends cc.Component {
         this.audies[type].play();
     }
 
-    public stopClip(type: AudioType): void {
+    public stopClip(type: number): void {
         this.audies[type].stop();
     }
 

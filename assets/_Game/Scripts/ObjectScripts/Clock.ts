@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import { Constants } from "../Managers/Constants";
 import PoolMember from "../Pool/PoolMember";
 
 const { ccclass, property } = cc._decorator;
@@ -15,18 +16,23 @@ export default class Clock extends PoolMember {
     @property(cc.Node) kg: cc.Node = null;
     @property(cc.Node) kp: cc.Node = null;
 
-    private currentTimeGio: number = 0;
-    private currentTimePhut: number = 0;
+    private _currentTimeGio: number = 0;
+    private _currentTimePhut: number = 0;
 
-    public get CurrentTimeGio(): number {
-        return this.currentTimeGio;
+    public get currentTimeGio(): number {
+        return this._currentTimeGio;
     }
 
-    public get CurrentTimePhut(): number {
-        return this.currentTimePhut;
+    public get currentTimePhut(): number {
+        return this._currentTimePhut;
     }
 
     protected start(): void {
+        this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
+    }
+
+    private onTouchEnd() {
+        Constants.game.checkResult(this);
     }
 
     setGio(gio: number) {
@@ -35,8 +41,8 @@ export default class Clock extends PoolMember {
 
         this.kp.angle = 0;
 
-        this.currentTimeGio = gio;
-        this.currentTimePhut = 0;
+        this._currentTimeGio = gio;
+        this._currentTimePhut = 0;
     }
 
     setTime(gio: number, phut: number) {
@@ -45,8 +51,8 @@ export default class Clock extends PoolMember {
         this.kg.angle = -goc;
         this.kp.angle = -poc;
 
-        this.currentTimeGio = gio;
-        this.currentTimePhut = phut;
+        this._currentTimeGio = gio;
+        this._currentTimePhut = phut;
     }
 
     setTimeRandomIgnoreGio(gio: number) {

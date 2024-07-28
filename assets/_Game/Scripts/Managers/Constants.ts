@@ -17,6 +17,8 @@ enum GAME_STATE {
 
 enum GAME_EVENT {
     NONE = "none",
+    APPLY_DATA_TO_GAME_PLAY_UI = "apply_data_to_game_play_ui",
+    START_COUNT_DOWN = "start_count_down",
 }
 
 export class Constants {
@@ -36,6 +38,7 @@ export class Constants {
 
     //=======================================
 
+    static moveSpeed: number = 1000;
 
 }
 

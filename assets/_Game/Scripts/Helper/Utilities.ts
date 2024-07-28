@@ -31,4 +31,18 @@ export default class Utilities {
   public static vectorToAngle(v: cc.Vec2 | cc.Vec3): number {
     return Math.atan2(v.y, v.x) * 180 / Math.PI;
   }
+
+  public static getRandomIntIgnore(min: number, max: number, ignore: number): number {
+    if (min >= max - 1 || ignore < min || ignore > max) return null;
+    let random = Math.floor(Math.random() * (max - min) + min);
+    if (random == ignore) {
+      return this.getRandomIntIgnore(min, max, ignore);
+    }
+    return random;
+  }
+
+  static getTimeStringFromHour(hour: number): string {
+    let hourString = hour < 10 ? '0' + hour : hour;
+    return hourString + ':00';
+  }
 }
