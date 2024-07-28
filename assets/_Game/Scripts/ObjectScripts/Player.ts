@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import { Constants } from "../Managers/Constants";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -28,11 +30,14 @@ export default class Player extends cc.Component {
     playAnimHappy() {
         this.text.node.active = false;
         this.anim.play('PlayerHappy');
+        Constants.soundManager.playClip(17);
     }
 
     playAnimSad() {
         this.text.node.active = false;
         this.anim.play('PlayerSad');
+        Constants.soundManager.playClip(20);
+
     }
 
     setText(text: string) {

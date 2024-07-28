@@ -8,6 +8,7 @@
 import Utilities from "../Helper/Utilities";
 import Clock from "../ObjectScripts/Clock";
 import Player from "../ObjectScripts/Player";
+import SkakeFxCompont from "../ObjectScripts/SkakeFx";
 import PoolControl from "../Pool/PoolControl";
 import PoolMember from "../Pool/PoolMember";
 import SimplePool, { PoolType } from "../Pool/SimplePool";
@@ -26,13 +27,38 @@ export default class Game extends cc.Component {
     }
 
     @property(Player) player: Player = null;
+    @property(SkakeFxCompont) skakeFx: SkakeFxCompont = null;
     @property([cc.Node]) listNodePosClock: cc.Node[] = [];
 
-    private enableAction: boolean = true;
+    private enableAction: boolean = false;
 
     private listClock: Clock[] = [];
     private resultTime: number = 0;
     private resultIndex: number = 0;
+    private questionCount: number = 0;
+
+    private enableCountTime: boolean = false;
+    private timeCount: number = 6;
+
+    protected update(dt: number): void {
+        if (!this.enableCountTime) return;
+        this.timeCount -= dt;
+        if (this.timeCount <= 0) {
+            this.showRecoment();
+            this.timeCount = 6;
+        }
+    }
+
+    private initCountTime() {
+        this.enableCountTime = true;
+        this.timeCount = 6;
+    }
+
+    showRecoment() {
+        if (!this.enableAction) return;
+
+        this.skakeFx.shake(this.listClock[this.resultIndex].node, 1.9, 5, 5);
+    }
 
     protected onLoad(): void {
     }
@@ -61,30 +87,56 @@ export default class Game extends cc.Component {
             }
         });
 
+        var random = Math.floor((Math.random() * 3) + 12);
+        Constants.soundManager.playClip(random);
+
         var targetPos = this.listNodePosClock[3].getPosition().sub(clock.node.parent.getPosition());
         const distance = targetPos.mag();
         const duration = distance / Constants.moveSpeed;
         cc.tween(clock.node)
-            .to(duration, { x: targetPos.x, y: targetPos.y, scale: 1 })
+            .to(duration, { x: targetPos.x, y: targetPos.y, scale: 1.2 })
             .start();
 
         setTimeout(this.afterCorrectAnswer.bind(this), 4000);
     }
 
-    afterCorrectAnswer() { }
+    afterCorrectAnswer() {
+        this.questionCount++;
+        if (this.questionCount >= 5) {
+            this.stopGame();
+        }
+        else {
+            this.initQuestion();
+            this.player.playAnimIdle();
+        }
+    }
 
     onWrongAnswer() {
         this.player.playAnimSad();
-
+        var random = Math.floor((Math.random() * 2) + 15);
+        Constants.soundManager.playClip(random);
         setTimeout(this.afterWrongAnswer.bind(this), 3000);
     }
 
-    afterWrongAnswer() { }
+    afterWrongAnswer() {
+        this.enableAction = true;
+        this.player.playAnimIdle();
+    }
 
     playGame() {
+        this.questionCount = 0;
+        this.initCountTime();
+        this.initQuestion();
+        this.node.emit(Constants.GAME_EVENT.START_COUNT_DOWN);
+    }
+
+    initQuestion() {
+        this.enableAction = true;
+
         this.listClock.forEach((clock) => {
             SimplePool.despawn(clock.getComponent(PoolMember));
         });
+        this.listClock = [];
 
         this.getThreePoolType().forEach((poolType, index) => {
             this.spawnClock(poolType, this.listNodePosClock[index]);
@@ -93,7 +145,7 @@ export default class Game extends cc.Component {
         this.settingValue();
         this.applyValue();
 
-        this.node.emit(Constants.GAME_EVENT.START_COUNT_DOWN);
+        Constants.soundManager.playClip(this.resultTime - 1);
     }
 
     settingValue() {
@@ -127,10 +179,11 @@ export default class Game extends cc.Component {
         this.player.setText(Utilities.getTimeStringFromHour(this.resultTime));
         this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI, this.resultTime);
         console.log("resultTime: " + this.resultTime);
-
     }
 
-    stopGame() { }
+    stopGame() {
+        this.node.emit(Constants.GAME_EVENT.STOP_COUNT_DOWN);
+    }
 
     spawnClock(poolType: PoolType, parent: cc.Node) {
         let clock = SimplePool.spawnT<Clock>(poolType, cc.Vec3.ZERO, 0);

@@ -78,25 +78,25 @@
         "__id__": 30
       },
       {
-        "__id__": 46
+        "__id__": 47
       },
       {
         "__id__": 32
       },
       {
-        "__id__": 51
+        "__id__": 52
       },
       {
-        "__id__": 69
+        "__id__": 70
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 74
+        "__id__": 75
       },
       {
-        "__id__": 75
+        "__id__": 76
       }
     ],
     "_prefab": null,
@@ -1606,6 +1606,9 @@
     "_components": [
       {
         "__id__": 45
+      },
+      {
+        "__id__": 46
       }
     ],
     "_prefab": null,
@@ -2267,6 +2270,9 @@
     "player": {
       "__id__": 44
     },
+    "skakeFx": {
+      "__id__": 46
+    },
     "listNodePosClock": [
       {
         "__id__": 33
@@ -2284,6 +2290,19 @@
     "_id": "64xUpBRg5A44BXc2znEyup"
   },
   {
+    "__type__": "f57a283k89BDrz3123703CA",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 32
+    },
+    "_enabled": true,
+    "shakeDuration": 1,
+    "shakeMagnitude": 20,
+    "shakeSpeed": 1,
+    "_id": "01K7Y6ozNERaDcdRaJS1Eh"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "SoundManager",
     "_objFlags": 0,
@@ -2292,16 +2311,16 @@
     },
     "_children": [
       {
-        "__id__": 47
+        "__id__": 48
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 49
+        "__id__": 50
       },
       {
-        "__id__": 50
+        "__id__": 51
       }
     ],
     "_prefab": null,
@@ -2357,13 +2376,13 @@
     "_name": "Bg",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 46
+      "__id__": 47
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 48
+        "__id__": 49
       }
     ],
     "_prefab": null,
@@ -2419,7 +2438,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 47
+      "__id__": 48
     },
     "_enabled": true,
     "_clip": {
@@ -2438,7 +2457,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 46
+      "__id__": 47
     },
     "_enabled": true,
     "clips": [
@@ -2519,7 +2538,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 46
+      "__id__": 47
     },
     "_enabled": true,
     "_id": "4auK4O8ghFyo5BAWVMlSdo"
@@ -2533,13 +2552,13 @@
     },
     "_children": [
       {
-        "__id__": 52
+        "__id__": 53
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 68
+        "__id__": 69
       }
     ],
     "_prefab": null,
@@ -2595,23 +2614,23 @@
     "_name": "GamePlayScreen",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 51
+      "__id__": 52
     },
     "_children": [
       {
-        "__id__": 53
+        "__id__": 54
       },
       {
-        "__id__": 57
+        "__id__": 58
       },
       {
-        "__id__": 61
+        "__id__": 62
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 67
+        "__id__": 68
       }
     ],
     "_prefab": null,
@@ -2667,16 +2686,16 @@
     "_name": "BtnBack",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 52
+      "__id__": 53
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 54
+        "__id__": 55
       },
       {
-        "__id__": 55
+        "__id__": 56
       }
     ],
     "_prefab": null,
@@ -2732,7 +2751,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 53
+      "__id__": 54
     },
     "_enabled": true,
     "_materials": [
@@ -2764,7 +2783,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 53
+      "__id__": 54
     },
     "_enabled": true,
     "_normalMaterial": null,
@@ -2773,7 +2792,7 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 56
+        "__id__": 57
       }
     ],
     "_N$interactable": true,
@@ -2834,7 +2853,7 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 52
+      "__id__": 53
     },
     "component": "",
     "_componentId": "fbf7fKzjkBIfIz+BbkYfBii",
@@ -2846,17 +2865,17 @@
     "_name": "TextLable",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 52
+      "__id__": 53
     },
     "_children": [
       {
-        "__id__": 58
+        "__id__": 59
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 60
+        "__id__": 61
       }
     ],
     "_prefab": null,
@@ -2912,13 +2931,13 @@
     "_name": "Label",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 57
+      "__id__": 58
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 59
+        "__id__": 60
       }
     ],
     "_prefab": null,
@@ -2974,7 +2993,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 58
+      "__id__": 59
     },
     "_enabled": true,
     "_materials": [
@@ -3009,7 +3028,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 57
+      "__id__": 58
     },
     "_enabled": true,
     "_materials": [
@@ -3041,17 +3060,17 @@
     "_name": "Timer",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 52
+      "__id__": 53
     },
     "_children": [
       {
-        "__id__": 62
+        "__id__": 63
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 66
+        "__id__": 67
       }
     ],
     "_prefab": null,
@@ -3107,17 +3126,17 @@
     "_name": "Group 3815 (1)",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 61
+      "__id__": 62
     },
     "_children": [
       {
-        "__id__": 63
+        "__id__": 64
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 65
+        "__id__": 66
       }
     ],
     "_prefab": null,
@@ -3173,13 +3192,13 @@
     "_name": "New Node",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 62
+      "__id__": 63
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 64
+        "__id__": 65
       }
     ],
     "_prefab": null,
@@ -3235,7 +3254,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 63
+      "__id__": 64
     },
     "_enabled": true,
     "_materials": [
@@ -3270,7 +3289,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 62
+      "__id__": 63
     },
     "_enabled": true,
     "_materials": [
@@ -3302,11 +3321,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 61
+      "__id__": 62
     },
     "_enabled": true,
     "text": {
-      "__id__": 64
+      "__id__": 65
     },
     "enableCountDown": false,
     "time": 60,
@@ -3317,14 +3336,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 52
+      "__id__": 53
     },
     "_enabled": true,
     "text": {
-      "__id__": 59
+      "__id__": 60
     },
     "timer": {
-      "__id__": 66
+      "__id__": 67
     },
     "_id": "d3qZuo3IJNhbIc+4W+d1jG"
   },
@@ -3333,7 +3352,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 51
+      "__id__": 52
     },
     "_enabled": true,
     "prefabs": [
@@ -3352,13 +3371,13 @@
     },
     "_children": [
       {
-        "__id__": 70
+        "__id__": 71
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 73
+        "__id__": 74
       }
     ],
     "_prefab": null,
@@ -3414,13 +3433,13 @@
     "_name": "Ads",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 69
+      "__id__": 70
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 71
+        "__id__": 72
       }
     ],
     "_prefab": null,
@@ -3476,7 +3495,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 70
+      "__id__": 71
     },
     "_enabled": true,
     "_normalMaterial": null,
@@ -3485,7 +3504,7 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 72
+        "__id__": 73
       }
     ],
     "_N$interactable": true,
@@ -3546,7 +3565,7 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 69
+      "__id__": 70
     },
     "component": "",
     "_componentId": "3f8d44tko5N3rwh4gIc1hPW",
@@ -3558,11 +3577,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 69
+      "__id__": 70
     },
     "_enabled": true,
     "ads": {
-      "__id__": 70
+      "__id__": 71
     },
     "_id": "e8/f9IZnZB1ZFpCFSi8tgx"
   },

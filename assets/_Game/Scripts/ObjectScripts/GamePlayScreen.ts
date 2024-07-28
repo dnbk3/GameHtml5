@@ -25,6 +25,11 @@ export default class GamePlayScreen extends cc.Component {
     bindingEvent() {
         Constants.game.node.on(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI, this.applyDataToGamePlayUI, this);
         Constants.game.node.on(Constants.GAME_EVENT.START_COUNT_DOWN, this.startCountDown, this);
+        Constants.game.node.on(Constants.GAME_EVENT.STOP_COUNT_DOWN, this.stopCountDown, this);
+    }
+
+    stopCountDown() {
+        this.timer.stopCountDown();
     }
 
     startCountDown() {
