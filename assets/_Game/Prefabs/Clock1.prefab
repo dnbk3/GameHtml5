@@ -55,8 +55,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -500,
+        390.16,
         0,
         0,
         0,
@@ -64,7 +64,7 @@
         1,
         0.7,
         0.7,
-        0.7
+        1
       ]
     },
     "_eulerAngles": {
@@ -184,7 +184,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "c6TEBzaTZKgKUybafvRpkE",
+    "fileId": "62zXlv7iBOZ7WfImPKG4PQ",
     "sync": false
   },
   {
@@ -422,7 +422,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "3e7aQkfshN+IqdsfWNqZyf",
+    "fileId": "1fz+NtE+BPg6hGb2udu3KH",
     "sync": false
   },
   {
@@ -433,7 +433,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "45w7XLAnJA67LRRMH+6MqO",
+    "fileId": "6ea2FqS7dOe6igtqqru87i",
     "sync": false
   },
   {
@@ -604,7 +604,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "f01CqI0FFLIpWkjuRzjrYG",
+    "fileId": "68cOpIEXJJ7ZfDJOJw85zD",
     "sync": false
   },
   {
@@ -615,7 +615,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "cag8wFYqVNabNy1FrDn3dU",
+    "fileId": "d1O2jiDZhBUr7R+CSnQZVG",
     "sync": false
   },
   {
@@ -626,7 +626,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "75ODNvFKNPkI7XnpCv69H2",
+    "fileId": "f7QBiDV4hPQJesMQexrE0M",
     "sync": false
   },
   {
