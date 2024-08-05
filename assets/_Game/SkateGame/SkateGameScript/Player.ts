@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import { Constants } from "../../Scripts/Managers/Constants";
+import Barrier from "./Barrier";
 
 const { ccclass, property } = cc._decorator;
 
@@ -16,6 +17,7 @@ export default class Player extends cc.Component {
     @property speed: number = 1000;
 
     public enableMove: boolean = false;
+    public row: number = 1;
 
     init(): void {
         this.enableMove = false;
@@ -47,6 +49,15 @@ export default class Player extends cc.Component {
             if (this.node.x > Constants.game.bgCtrl.rangeSpawnItem.y + 3000) {
                 this.enableMove = false;
             }
+        }
+    }
+
+    onCollisionEnter(other: cc.Collider, self: cc.Collider): void {
+        const otherComponent = other.getComponent(Barrier);
+        if (!otherComponent) return;
+        if (otherComponent.row === this.row) {
+            otherComponent.actionCollider();
+
         }
     }
 }

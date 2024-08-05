@@ -5,7 +5,6 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
-import AdsManager from "./AdsManager";
 import Game from "./Game";
 import SoundManager from "./SoundManager";
 import Timeline from "./TimeLine";
@@ -38,7 +37,7 @@ export class Constants {
 
     static enableSound: boolean = true;
     static enablePhysics: boolean = false;
-    static enableCollision: boolean = false;
+    static enableCollision: boolean = true;
     static enableDebugPhysics: boolean = false;
 
     //=======================================

@@ -50,7 +50,7 @@ export default class BackgroundCrl extends cc.Component {
 
         let item: PoolMember = SimplePool.spawn(this.randomType(), cc.Vec3.ZERO, 0);
         item.node.x = posX;
-        item.node.y = this.randomY();
+        item.node.y = this.randomY(item);
         this._listItem.push(item);
     }
 
@@ -58,9 +58,9 @@ export default class BackgroundCrl extends cc.Component {
         return Math.random() * (this.randomSpace.y - this.randomSpace.x) + this.randomSpace.x;
     }
 
-    randomY(): number {
+    randomY(poolMember: PoolMember): number {
         var i = Math.floor(Math.random() * 3);
-
+        poolMember.init(i);
         switch (i) {
             case 0:
                 return -250;

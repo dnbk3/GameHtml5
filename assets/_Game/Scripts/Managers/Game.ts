@@ -22,6 +22,10 @@ export default class Game extends cc.Component {
     @property(Player) player: Player = null;
     @property(BackgroundCrl) bgCtrl: BackgroundCrl = null;
 
+    protected onLoad(): void {
+        this.enablePhysics();
+    }
+
     protected start(): void {
         this.initGame();
 
@@ -41,5 +45,16 @@ export default class Game extends cc.Component {
 
     showResult(): void {
         Constants.currState = Constants.GAME_STATE.GameResult;
+    }
+
+    public enablePhysics(): void {
+        cc.director.getPhysicsManager().enabled = Constants.enablePhysics;
+        cc.director.getCollisionManager().enabled = Constants.enableCollision;
+
+        if (Constants.enableDebugPhysics) {
+            cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_aabbBit |
+                cc.PhysicsManager.DrawBits.e_jointBit |
+                cc.PhysicsManager.DrawBits.e_shapeBit;
+        }
     }
 }

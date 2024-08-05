@@ -16,18 +16,24 @@ export default class Barrier extends PoolMember {
 
     private enableCollision: boolean = false;
 
-    init(): void {
-        this.enableCollision = false;
+    private _row: number = 0;
+    public get row(): number {
+        return this._row;
     }
 
-    protected actionCollider(): void {
+    init(row: number): void {
+        this.enableCollision = false;
+        this._row = row;
+    }
+
+    actionCollider(): void {
         // SimplePool.spawn(PoolType.VFX, this.node.getWorldPosition(), 0);
         SimplePool.despawn(this);
     }
 
     onCollisionEnter(other: cc.Collider, self: cc.Collider): void {
-        if (!this.enableCollision) return;
-        this.enableCollision = false;
-        this.actionCollider();
+        // if (!this.enableCollision) return;
+        // this.enableCollision = false;
+        // this.actionCollider();
     }
 }
