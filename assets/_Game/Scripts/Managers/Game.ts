@@ -33,7 +33,7 @@ export default class Game extends cc.Component {
     @property(ResultTimeFrame) resultTimeFrame: ResultTimeFrame = null;
     @property(cc.Node) rays: cc.Node = null;
 
-    private enableAction: boolean = false;
+    public enableAction: boolean = false;
 
     private listClock: Clock[] = [];
     private resultTime: number = 0;

@@ -20,17 +20,18 @@ export default class GamePlayScreen extends cc.Component {
 
     protected onLoad(): void {
         this.bindingEvent();
-
-        // this.resize();
-        // cc.view.setResizeCallback(this.resize.bind(this));
-
     }
 
     resize() {
 
     }
 
-    onClickBack() { }
+    onClickBack() {
+        if (!Constants.game.enableAction) return;
+        Constants.game.stopGame();
+        Constants.uiManager.onClose(1);
+        Constants.uiManager.onOpen(0);
+    }
 
     bindingEvent() {
         Constants.game.node.on(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI, this.applyDataToGamePlayUI, this);
