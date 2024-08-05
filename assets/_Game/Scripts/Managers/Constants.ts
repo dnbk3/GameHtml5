@@ -13,6 +13,9 @@ import UIManager from "./UIManager";
 
 enum GAME_STATE {
     NONE = "none",
+    GameHome = "game_home",
+    GamePlay = "game_play",
+    GameResult = "game_result",
 }
 
 enum GAME_EVENT {
@@ -31,6 +34,7 @@ export class Constants {
 
     static GAME_STATE = GAME_STATE;
     static GAME_EVENT = GAME_EVENT;
+    static currState: GAME_STATE = GAME_STATE.NONE;
 
     static enableSound: boolean = true;
     static enablePhysics: boolean = false;

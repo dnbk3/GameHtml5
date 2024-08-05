@@ -7,10 +7,10 @@
 
 export enum PoolType {
     None = 0,
-    Vach = 1,
+    Da = 1,
     OcSen = 2,
-    Da = 3,
-    CocChan = 4,
-    RaoChan = 5,
-    ChuCai = 6,
+    Coc = 3,
+    RaoChan = 4,
+    ChuCai = 5,
+    VFX = 6,
 }

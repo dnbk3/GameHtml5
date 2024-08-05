@@ -5,8 +5,9 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import BackgroundCrl from "../../SkateGame/SkateGameScript/BackgroundCrl";
+import Player from "../../SkateGame/SkateGameScript/Player";
 import SkakeFxCompont from "../ObjectScripts/SkakeFx";
-import BackgroundCrl from "../SkateGameScript/BackgroundCrl";
 import { Constants } from "./Constants";
 
 const { ccclass, property } = cc._decorator;
@@ -18,16 +19,25 @@ export default class Game extends cc.Component {
         Constants.game = this;
     }
 
-    @property(SkakeFxCompont) skakeFx: SkakeFxCompont = null;
-    @property(BackgroundCrl) backgroundCtrl: BackgroundCrl = null;
+    @property(Player) player: Player = null;
+    @property(BackgroundCrl) bgCtrl: BackgroundCrl = null;
 
     protected start(): void {
-        this.startGame();
+        this.initGame();
     }
 
-    //----- start game
+    initGame(): void {
+        Constants.currState = Constants.GAME_STATE.GameHome;
+        this.player.init();
+        this.bgCtrl.init();
+    }
 
-    startGame() {
-        this.backgroundCtrl.init(20000);
+    startMove(): void {
+        Constants.currState = Constants.GAME_STATE.GamePlay;
+        this.player.startMove();
+    }
+
+    showResult(): void {
+        Constants.currState = Constants.GAME_STATE.GameResult;
     }
 }
