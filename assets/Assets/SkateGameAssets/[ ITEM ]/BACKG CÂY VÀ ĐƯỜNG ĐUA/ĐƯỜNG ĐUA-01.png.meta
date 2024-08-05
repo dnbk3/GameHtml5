@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "2047599a-c491-45bc-96e2-5ba93bd25ab1",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 16384,
+  "height": 2188,
+  "platformSettings": {},
+  "subMetas": {
+    "ĐƯỜNG ĐUA-01": {
+      "ver": "1.0.6",
+      "uuid": "a920a1c8-07de-4d89-8460-e4c89cea8817",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "2047599a-c491-45bc-96e2-5ba93bd25ab1",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 16384,
+      "height": 2188,
+      "rawWidth": 16384,
+      "rawHeight": 2188,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

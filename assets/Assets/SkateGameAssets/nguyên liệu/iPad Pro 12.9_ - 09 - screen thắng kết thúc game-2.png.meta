@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "504aa6c2-cb34-479a-89fe-e335e58cb68c",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 5464,
+  "height": 4100,
+  "platformSettings": {},
+  "subMetas": {
+    "iPad Pro 12.9_ - 09 - screen thắng kết thúc game-2": {
+      "ver": "1.0.6",
+      "uuid": "9fcfe709-5553-418e-a11b-22302d247bb7",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "504aa6c2-cb34-479a-89fe-e335e58cb68c",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 5464,
+      "height": 4100,
+      "rawWidth": 5464,
+      "rawHeight": 4100,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

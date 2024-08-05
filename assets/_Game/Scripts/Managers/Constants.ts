@@ -25,7 +25,6 @@ enum GAME_EVENT {
 
 export class Constants {
     static game: Game;
-    static adsManager: AdsManager;
     static soundManager: SoundManager;
     static uiManager: UIManager;
     static timeLine: Timeline;

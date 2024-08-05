@@ -6,15 +6,8 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import PoolMember from "./PoolMember";
+import { PoolType } from "./PoolType";
 const { ccclass, property } = cc._decorator;
-
-export enum PoolType {
-    None = 0,
-    Clock1 = 1,
-    Clock2 = 2,
-    Clock3 = 3,
-    Clock4 = 4,
-}
 
 @ccclass
 export default class SimplePool {
@@ -125,6 +118,8 @@ class Pool {
             this.list.push(clone);
         }
 
+        clone.node.parent.removeChild(clone.node);
+        this.parentNode.addChild(clone.node);
     }
 
     collect() {

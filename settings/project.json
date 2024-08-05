@@ -1,10 +1,28 @@
 {
   "group-list": [
-    "default"
+    "default",
+    "Vach",
+    "Player",
+    "VatCan"
   ],
   "collision-matrix": [
     [
       true
+    ],
+    [
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false
     ]
   ],
   "excluded-modules": [

@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "d7b91c3f-6161-4f6c-8bef-f8bd546be4de",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 202,
+  "height": 191,
+  "platformSettings": {},
+  "subMetas": {
+    "cọc chắn-01": {
+      "ver": "1.0.6",
+      "uuid": "a66e5493-47e0-4f36-99f2-8b8222bc02f7",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d7b91c3f-6161-4f6c-8bef-f8bd546be4de",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 202,
+      "height": 191,
+      "rawWidth": 202,
+      "rawHeight": 191,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
