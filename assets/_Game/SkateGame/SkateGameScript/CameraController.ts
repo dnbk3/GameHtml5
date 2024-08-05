@@ -5,24 +5,23 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class CameraController extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
+    @property(cc.Node) target: cc.Node = null;
 
-    @property
-    text: string = 'hello';
+    private posStart: cc.Vec3;
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {}
-
-    start () {
-
+    protected onLoad(): void {
+        this.posStart = this.node.getWorldPosition();
     }
 
-    // update (dt) {}
+
+    protected update(dt: number): void {
+        if (this.target) {
+            this.node.setWorldPosition(cc.v3(Math.max(this.target.getWorldPosition().x, this.posStart.x), this.posStart.y, this.posStart.z));
+        }
+    }
 }

@@ -18,6 +18,7 @@ export default class BackgroundCrl extends cc.Component {
 
     @property(cc.Vec2) rangeSpawnItem: cc.Vec2 = cc.v2(0, 0);
     @property(cc.Vec2) randomSpace: cc.Vec2 = cc.v2(0, 0);
+    @property(cc.Node) finishLine: cc.Node = null;
 
     private _listItem: PoolMember[] = [];
 
@@ -28,6 +29,7 @@ export default class BackgroundCrl extends cc.Component {
     init(): void {
         this.destroyAllItem();
         this.spawnAllItem();
+        this.finishLine.x = this.rangeSpawnItem.y + 2000;
     }
 
     destroyAllItem(): void {

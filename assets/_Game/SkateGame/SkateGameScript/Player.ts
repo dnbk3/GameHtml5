@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import { Constants } from "../../Scripts/Managers/Constants";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -41,6 +43,10 @@ export default class Player extends cc.Component {
     protected update(dt: number): void {
         if (this.enableMove) {
             this.node.x += this.speed * dt;
+
+            if (this.node.x > Constants.game.bgCtrl.rangeSpawnItem.y + 3000) {
+                this.enableMove = false;
+            }
         }
     }
 }

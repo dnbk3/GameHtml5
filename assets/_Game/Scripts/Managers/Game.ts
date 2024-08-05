@@ -24,6 +24,8 @@ export default class Game extends cc.Component {
 
     protected start(): void {
         this.initGame();
+
+        setTimeout(this.startMove.bind(this), 3000);
     }
 
     initGame(): void {
