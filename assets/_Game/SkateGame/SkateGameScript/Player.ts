@@ -193,10 +193,10 @@ export default class Player extends cc.Component {
     stopMove(): void {
         this.enableMove = false;
         this.idle();
-        Constants.uiManager.onClose(1);
+        // Constants.uiManager.onClose(1);
         this.unbindEvent();
 
-        Constants.game.endGameAfterTime(2);
+        Constants.game.endGameAfterTime(3);
     }
 
     setAnimIdle(): void {

@@ -1013,7 +1013,7 @@
     "_enabled": true,
     "prefabs": [
       {
-        "__uuid__": "f18a2188-17e0-4dca-bcf1-09410ec74cf0"
+        "__uuid__": "a5aafe67-acc6-417e-a8f9-b75bb0f11a65"
       },
       {
         "__uuid__": "f18a2188-17e0-4dca-bcf1-09410ec74cf0"
@@ -1127,12 +1127,12 @@
     "rangeSpawnItem": {
       "__type__": "cc.Vec2",
       "x": 1500,
-      "y": 18000
+      "y": 30000
     },
     "randomSpace": {
       "__type__": "cc.Vec2",
-      "x": 1000,
-      "y": 1500
+      "x": 1500,
+      "y": 2000
     },
     "finishLine": {
       "__id__": 39

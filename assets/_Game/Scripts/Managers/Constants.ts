@@ -25,6 +25,7 @@ enum GAME_EVENT {
     STOP_COUNT_DOWN = "stop_count_down",
     PLAY_PARTICLE = "play_particle",
 
+    COUNT_DOWN_HOMESCREEN = "count_down_home_screen",
 }
 
 export class Constants {

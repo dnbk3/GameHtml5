@@ -20,6 +20,7 @@ export default class GamePlayScreen extends cc.Component {
     @property(cc.ParticleSystem) particle1: cc.ParticleSystem = null;
     @property(cc.ParticleSystem) particle2: cc.ParticleSystem = null;
 
+
     private _currtime: number = 0;
     private _enableCountTime: boolean = false;
 
@@ -44,11 +45,12 @@ export default class GamePlayScreen extends cc.Component {
 
         this.timeLabel.string = Utilities.formatTime(this._currtime);
 
-        this.particle1.node.active = false;
-        this.particle2.node.active = false;
+        this.stopParticle();
     }
 
     startCountTime(): void {
+        console.log("startCountTime");
+
         this._enableCountTime = true;
     }
 
@@ -70,7 +72,6 @@ export default class GamePlayScreen extends cc.Component {
     }
 
     playParticle(): void {
-        console.log("Play Particle");
 
         this.particle1.node.active = true;
         this.particle2.node.active = true;
@@ -78,9 +79,13 @@ export default class GamePlayScreen extends cc.Component {
         this.particle1.resetSystem();
         this.particle2.resetSystem();
 
-        setTimeout(() => {
-            this.particle1.node.active = false;
-            this.particle2.node.active = false;
-        }, 1500);
+        setTimeout(this.stopParticle.bind(this), 3000);
+    }
+
+    stopParticle(): void {
+        this.particle1.stopSystem();
+        this.particle2.stopSystem();
+        this.particle1.node.active = false;
+        this.particle2.node.active = false;
     }
 }

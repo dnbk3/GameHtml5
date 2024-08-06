@@ -12,20 +12,47 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class HomeScreen extends cc.Component {
 
-    @property(cc.Node) btnStartGame: cc.Node = null;
+    @property(cc.Label) label: cc.Label = null;
+
+    protected onLoad(): void {
+        Constants.game.node.on(Constants.GAME_EVENT.COUNT_DOWN_HOMESCREEN, this.showCountDown, this);
+    }
 
     protected start(): void {
-        this.btnStartGame.active = false;
-        setTimeout(this.enableButton.bind(this), 3000);
     }
 
-    enableButton() {
-        this.btnStartGame.active = true
-    }
-
-    onClickStartGame() {
-        Constants.soundManager.playClip(18);
-        Constants.uiManager.onClose(0);
-        Constants.game.playGame();
+    showCountDown(timeDelay: number): void {
+        console.log("showCountDown```");
+        cc.tween(this.label.node)
+            .delay(timeDelay)
+            .call(() => {
+                this.label.node.active = true;
+                this.label.string = "3";
+            })
+            .to(0, { scale: 1.5 })
+            .to(0.5, { scale: 1 })
+            .delay(0.5)
+            .call(() => {
+                this.label.string = "2";
+            })
+            .to(0, { scale: 1.5 })
+            .to(0.5, { scale: 1 })
+            .delay(0.5)
+            .call(() => {
+                this.label.string = "1";
+            })
+            .to(0, { scale: 1.5 })
+            .to(0.5, { scale: 1 })
+            .delay(0.5)
+            .call(() => {
+                this.label.string = "Start!";
+            })
+            .to(0, { scale: 1.5 })
+            .to(0.5, { scale: 1 })
+            .delay(0.5)
+            .call(() => {
+                this.label.node.active = false;
+            })
+            .start();
     }
 }

@@ -33,7 +33,6 @@ export default class GameResultScreen extends cc.Component {
     }
 
     rePlaygame() {
-        Constants.soundManager.playClip(18);
         Constants.uiManager.onClose(2);
         Constants.uiManager.onOpen(1);
         Constants.game.initGame();

@@ -43,17 +43,20 @@ export default class Game extends cc.Component {
         Constants.currState = Constants.GAME_STATE.GameHome;
         this.player.init();
         this.bgCtrl.init();
+        Constants.uiManager.onOpen(0);
         this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI);
-
-        setTimeout(this.startMove.bind(this), 1000);
+        this.node.emit(Constants.GAME_EVENT.COUNT_DOWN_HOMESCREEN, 1);
+        Constants.uiManager.onOpen(1);
+        setTimeout(this.startMove.bind(this), 5000);
     }
 
     startMove(): void {
         if (Constants.currState == Constants.GAME_STATE.GamePlay) return
         Constants.currState = Constants.GAME_STATE.GamePlay;
         this.player.startMove();
-        Constants.uiManager.onOpen(1);
         this.bgCtrl.setCheckLayer(true);
+        console.log("startMove");
+
         this.node.emit(Constants.GAME_EVENT.START_COUNT_DOWN);
     }
 
@@ -63,6 +66,7 @@ export default class Game extends cc.Component {
 
         setTimeout(() => {
             Constants.currState = Constants.GAME_STATE.GameResult;
+            Constants.uiManager.onClose(1);
             Constants.uiManager.onOpen(2);
             this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_RESULT_UI);
         }, 1000);
