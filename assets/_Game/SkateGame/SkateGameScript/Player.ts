@@ -30,13 +30,22 @@ export default class Player extends cc.Component {
     }
 
     private _isJumping: boolean = false;
-    private _tweenJumpUp: cc.Tween = null;
-    private _tweenJumpDown: cc.Tween = null;
+    private _tweenJump: cc.Tween = null;
     jump(): void {
         if (this._isJumping) return;
         this._isJumping = true;
 
+        if (!this._tweenJump) {
+            this._tweenJump = cc.tween(this.body)
+                .to(0.5, { y: 600 }, { easing: 'sineOut' })
+                .delay(0.25)
+                .to(0.5, { y: 265 }, { easing: 'sineIn' })
+                .call(() => {
+                    this._isJumping = false;
+                })
+        }
 
+        this._tweenJump.start();
     }
 
     bindEvent(): void {

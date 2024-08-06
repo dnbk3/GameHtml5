@@ -41,6 +41,7 @@ export default class Game extends cc.Component {
     startMove(): void {
         Constants.currState = Constants.GAME_STATE.GamePlay;
         this.player.startMove();
+        Constants.uiManager.onOpen(1);
     }
 
     showResult(): void {
