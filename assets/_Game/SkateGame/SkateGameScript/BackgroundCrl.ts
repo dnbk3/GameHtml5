@@ -81,9 +81,16 @@ export default class BackgroundCrl extends cc.Component {
     spawnItem(posX: number): void {
 
         let item: PoolMember = SimplePool.spawn(this.randomType(), cc.Vec3.ZERO, 0);
+        if (item.poolType == PoolType.ChuCai) {
+            item.getComponent("ChuCai").setLetter(this.getRandomChar());
+        }
         item.node.x = posX;
         item.node.y = this.randomY(item);
         this._listItem.push(item);
+    }
+
+    getRandomChar(): String {
+        return Constants.dataChar[Math.floor(Math.random() * Constants.dataChar.length)];
     }
 
     randomDistance(): number {
@@ -106,7 +113,7 @@ export default class BackgroundCrl extends cc.Component {
     }
 
     randomType(): PoolType {
-        return Math.floor(Math.random() * 3 + 2) as PoolType;
+        return Math.floor(Math.random() * 4 + 2) as PoolType;
     }
 
     reset(): void {

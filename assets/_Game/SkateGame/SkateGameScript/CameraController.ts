@@ -21,7 +21,7 @@ export default class CameraController extends cc.Component {
 
     protected update(dt: number): void {
         if (this.target) {
-            this.node.setWorldPosition(cc.v3(Math.max(this.target.getWorldPosition().x, this.posStart.x), this.posStart.y, this.posStart.z));
+            this.node.setWorldPosition(cc.v3(Math.max(this.target.getWorldPosition().x + 300, this.posStart.x), this.posStart.y, this.posStart.z));
         }
     }
 }

@@ -244,6 +244,15 @@
         "root": {
           "__id__": 5
         }
+      },
+      {
+        "prefab": {
+          "__uuid__": "45d100f8-ed73-42c0-a0db-aee086088f41"
+        },
+        "amount": 0,
+        "root": {
+          "__id__": 5
+        }
       }
     ],
     "_id": "cbUKJXsBZDGrbxOr3BVana"

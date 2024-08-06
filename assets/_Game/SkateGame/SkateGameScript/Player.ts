@@ -60,19 +60,23 @@ export default class Player extends cc.Component {
         this.setAnimJump();
         if (!this._tweenJump) {
             this._tweenJump = cc.tween(this.body.node)
-                .to(0.65, { y: 600 }, { easing: 'quadOut' })
-                .to(0.65, { y: 265 }, { easing: 'quadIn' })
+                .to(0.5, { y: 600 }, { easing: 'quadOut' })
+                .to(0.5, { y: 265 }, { easing: 'quadIn' })
                 .call(() => {
                     this._isJumping = false;
-                    // this.setAnimRun();
+                    this.setAnimRun();
                 })
+                .union()
         }
         this._tweenJump.start();
+    }
 
-        this._tweenWaitChangeAnim && this._tweenWaitChangeAnim.stop();
-        this._tweenWaitChangeAnim = cc.tween(this.body.node)
-            .delay(1.27)
-            .call(this.setAnimRun.bind(this)).start();
+    stopJump(): void {
+        if (!this._isJumping) return;
+        this._isJumping = false;
+        this._tweenJump && this._tweenJump.stop();
+        this.body.node.y = 265;
+        this.setAnimRun();
     }
 
     private _tweenWaitChangeAnim: cc.Tween = null;
@@ -85,7 +89,7 @@ export default class Player extends cc.Component {
 
     eatChar(): void {
         this.setAnimEat();
-
+        // this.stopJump();
         this._tweenWaitChangeAnim && this._tweenWaitChangeAnim.stop();
         this._tweenWaitChangeAnim = cc.tween(this.body.node)
             .delay(1)
@@ -94,10 +98,10 @@ export default class Player extends cc.Component {
 
     collision(): void {
         this.setAnimCollider();
-
+        // this.stopJump();
         this._tweenWaitChangeAnim && this._tweenWaitChangeAnim.stop();
         this._tweenWaitChangeAnim = cc.tween(this.body.node)
-            .delay(1.2)
+            .delay(1.5)
             .call(this.setAnimRun.bind(this)).start();
     }
 
@@ -176,7 +180,8 @@ export default class Player extends cc.Component {
 
     stopMove(): void {
         this.enableMove = false;
-        this.setAnimIdle();
+        this.idle();
+        Constants.uiManager.onClose(1);
         this.unbindEvent();
     }
 
@@ -216,7 +221,15 @@ export default class Player extends cc.Component {
         if (!otherComponent) return;
         if (this.checkJump()) return;
         if (otherComponent.row === this.row || otherComponent.row === this._tmpRow) {
-            otherComponent.actionCollider();
+            const check = otherComponent.actionCollider();
+            if (check) {
+                this.speedUp(1000);
+                this.eatChar();
+            }
+            else {
+                this.speedUp(-500);
+                this.collision();
+            }
         }
     }
 }

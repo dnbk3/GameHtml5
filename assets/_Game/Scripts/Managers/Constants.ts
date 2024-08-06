@@ -43,6 +43,6 @@ export class Constants {
     //=======================================
 
     static moveSpeed: number = 1000;
-
+    static dataChar: String[] = ["H", "h"];
 }
 
