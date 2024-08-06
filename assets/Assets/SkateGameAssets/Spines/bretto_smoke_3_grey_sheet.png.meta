@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "907d2baa-1833-4462-a680-49e6f3ab4d5a",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 124,
+  "height": 119,
+  "platformSettings": {},
+  "subMetas": {
+    "bretto_smoke_3_grey_sheet": {
+      "ver": "1.0.6",
+      "uuid": "feef7a94-ac94-4989-a627-24e50ff63eac",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "907d2baa-1833-4462-a680-49e6f3ab4d5a",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 124,
+      "height": 119,
+      "rawWidth": 124,
+      "rawHeight": 119,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

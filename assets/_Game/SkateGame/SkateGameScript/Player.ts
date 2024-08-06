@@ -6,6 +6,8 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import { Constants } from "../../Scripts/Managers/Constants";
+import { PoolType } from "../../Scripts/Pool/PoolType";
+import SimplePool from "../../Scripts/Pool/SimplePool";
 import Barrier from "./Barrier";
 
 const { ccclass, property } = cc._decorator;
@@ -229,7 +231,12 @@ export default class Player extends cc.Component {
             else {
                 this.speedUp(-500);
                 this.collision();
+                this.spawnSmokeVfx(cc.v3(other.node.getWorldPosition()));
             }
         }
+    }
+
+    spawnSmokeVfx(worlfPos: cc.Vec3): void {
+        SimplePool.spawn(PoolType.VFX, worlfPos.add(cc.v3(0, 500, 0)), 0);
     }
 }

@@ -14,15 +14,17 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class VFX extends PoolMember {
 
-    @property({ type: cc.Animation })
-    anim: cc.Animation = null;
+    @property([cc.ParticleSystem])
+    anim: cc.ParticleSystem[] = [];
 
     @property({ type: cc.Float })
     timeAlive: number = 1;
 
     protected onEnable(): void {
 
-        this.anim.play();
+        this.anim.forEach((anim) => {
+            anim.resetSystem();
+        });
 
         // cc.tween(this.node).delay(0.5).call(()=> SimplePool.despawn(this));
         //delay 0.5s thi despawn
