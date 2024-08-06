@@ -13,41 +13,9 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GamePlayScreen extends cc.Component {
 
-    @property(cc.Label) text: cc.Label = null;
-    @property(Timer) timer: Timer = null;
-
-    @property(cc.Node) tl: cc.Node = null;
-
-    protected onLoad(): void {
-        this.bindingEvent();
+    onButtonJumpClick(): void {
+        Constants.game.player.jump();
     }
 
-    resize() {
-
-    }
-
-    onClickBack() {
-        if (!Constants.game.enableAction) return;
-        Constants.game.stopGame();
-        Constants.uiManager.onClose(1);
-        Constants.uiManager.onOpen(0);
-    }
-
-    bindingEvent() {
-        Constants.game.node.on(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI, this.applyDataToGamePlayUI, this);
-        Constants.game.node.on(Constants.GAME_EVENT.START_COUNT_DOWN, this.startCountDown, this);
-        Constants.game.node.on(Constants.GAME_EVENT.STOP_COUNT_DOWN, this.stopCountDown, this);
-    }
-
-    stopCountDown() {
-        this.timer.stopCountDown();
-    }
-
-    startCountDown() {
-        this.timer.startCountDown();
-    }
-
-    applyDataToGamePlayUI(time: number) {
-        this.text.string = time.toString() + " giờ rồi này. Đồng hồ nào chỉ đúng giờ nhỉ?";
-    }
+    onButtonBackClick(): void { }
 }
