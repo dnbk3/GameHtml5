@@ -1054,13 +1054,13 @@
     "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 12,
-      "y": 157
+      "x": 24,
+      "y": 149
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 327,
-      "height": 438
+      "width": 259,
+      "height": 375
     },
     "_id": "0djTOFoNVM7Zdg10OAfIZK"
   },

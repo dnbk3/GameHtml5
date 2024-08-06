@@ -18,15 +18,38 @@ export default class Player extends cc.Component {
     @property(cc.Node) frameListener: cc.Node = null;
 
     @property speed: number = 1000;
+    private _speed: number = 1000;
 
     public enableMove: boolean = false;
     public row: number = 1;
     private _tmpRow: number = -1;
     private tweenMoveX: cc.Tween = null;
 
+    protected onLoad(): void {
+        this._speed = this.speed;
+    }
+
     init(): void {
         this.enableMove = false;
         this.setAnimIdle();
+    }
+
+    private _isSpeedUp: boolean = false;
+    private _tweenSpeedDown: cc.Tween = null;
+    public speedUp(): void {
+        this._speed = this.speed + 1000;
+        if (!this._tweenSpeedDown) {
+            this._tweenSpeedDown = cc.tween(this)
+                .delay(2)
+                .call(this.speedDown.bind(this))
+        }
+
+        this._tweenSpeedDown.stop();
+        this._tweenSpeedDown.start();
+    }
+
+    speedDown(): void {
+        this._speed = this.speed;
     }
 
     private _isJumping: boolean = false;
@@ -140,7 +163,7 @@ export default class Player extends cc.Component {
 
     protected update(dt: number): void {
         if (this.enableMove) {
-            this.node.x += this.speed * dt;
+            this.node.x += this._speed * dt;
 
             if (this.node.x > Constants.game.bgCtrl.rangeSpawnItem.y + 3000) {
                 this.stopMove();
@@ -148,9 +171,15 @@ export default class Player extends cc.Component {
         }
     }
 
-    onCollisionEnter(other: cc.Collider, self: cc.Collider): void {
+    private checkJump(): boolean {
+        if (this.body.y > 300) return true;
+        return false;
+    }
+
+    onCollisionStay(other: cc.Collider, self: cc.Collider): void {
         const otherComponent = other.getComponent(Barrier);
         if (!otherComponent) return;
+        if (this.checkJump()) return;
         if (otherComponent.row === this.row || otherComponent.row === this._tmpRow) {
             otherComponent.actionCollider();
         }
