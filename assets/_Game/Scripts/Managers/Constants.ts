@@ -23,6 +23,8 @@ enum GAME_EVENT {
     APPLY_DATA_TO_GAME_RESULT_UI = "apply_data_to_game_result_ui",
     START_COUNT_DOWN = "start_count_down",
     STOP_COUNT_DOWN = "stop_count_down",
+    PLAY_PARTICLE = "play_particle",
+
 }
 
 export class Constants {

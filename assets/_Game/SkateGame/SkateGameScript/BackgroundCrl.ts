@@ -16,6 +16,8 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class BackgroundCrl extends cc.Component {
 
+    static countCharSpawn: number = 0;
+
     @property(LayerGame) layerGame1: LayerGame = null;
     @property(LayerGame) layerGame2: LayerGame = null;
 
@@ -26,7 +28,7 @@ export default class BackgroundCrl extends cc.Component {
     private _listItem: PoolMember[] = [];
 
     protected onLoad(): void {
-
+        BackgroundCrl.countCharSpawn = 0;
     }
 
     private _checkLayer: boolean = false;
@@ -59,9 +61,12 @@ export default class BackgroundCrl extends cc.Component {
     }
 
     init(): void {
+        BackgroundCrl.countCharSpawn = 0;
         this.destroyAllItem();
         this.spawnAllItem();
         this.finishLine.x = this.rangeSpawnItem.y + 2000;
+        this.layerGame1.reset();
+        this.layerGame2.reset();
     }
 
     destroyAllItem(): void {
@@ -83,6 +88,7 @@ export default class BackgroundCrl extends cc.Component {
         let item: PoolMember = SimplePool.spawn(this.randomType(), cc.Vec3.ZERO, 0);
         if (item.poolType == PoolType.ChuCai) {
             item.getComponent("ChuCai").setLetter(this.getRandomChar());
+            BackgroundCrl.countCharSpawn++;
         }
         item.node.x = posX;
         item.node.y = this.randomY(item);
@@ -113,7 +119,9 @@ export default class BackgroundCrl extends cc.Component {
     }
 
     randomType(): PoolType {
-        return Math.floor(Math.random() * 4 + 2) as PoolType;
+        var i = Math.floor(Math.random() * 4 + 2);
+        if (i >= 5) return PoolType.ChuCai;
+        return i as PoolType;
     }
 
     reset(): void {

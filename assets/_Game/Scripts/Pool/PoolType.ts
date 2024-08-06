@@ -13,4 +13,5 @@ export enum PoolType {
     RaoChan = 4,
     ChuCai = 5,
     VFX = 6,
+    VFX1 = 7,
 }

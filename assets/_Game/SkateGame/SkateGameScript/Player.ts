@@ -15,6 +15,9 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class Player extends cc.Component {
 
+    static countCollisionBarrier: number = 0;
+    static countCollisionItem: number = 0;
+
     @property(cc.Animation) body: cc.Animation = null;
     @property(cc.ParticleSystem) particle: cc.ParticleSystem = null;
     @property(cc.Node) frameListener: cc.Node = null;
@@ -27,14 +30,19 @@ export default class Player extends cc.Component {
     private _tmpRow: number = -1;
     private tweenMoveX: cc.Tween = null;
 
+    private _posStart: cc.Vec2 = cc.v2(0, 0);
     protected onLoad(): void {
         this._speed = this.speed;
         this.idle();
+        this._posStart = this.node.getPosition();
     }
 
     init(): void {
         this.enableMove = false;
         this.setAnimIdle();
+        Player.countCollisionBarrier = 0;
+        Player.countCollisionItem = 0;
+        this.node.setPosition(this._posStart);
     }
 
     private _tweenSpeedNor: cc.Tween = null;
@@ -60,6 +68,7 @@ export default class Player extends cc.Component {
         if (this._isJumping) return;
         this._isJumping = true;
         this.setAnimJump();
+        this.particle.node.active = false;
         if (!this._tweenJump) {
             this._tweenJump = cc.tween(this.body.node)
                 .to(0.5, { y: 600 }, { easing: 'quadOut' })
@@ -67,6 +76,7 @@ export default class Player extends cc.Component {
                 .call(() => {
                     this._isJumping = false;
                     this.setAnimRun();
+                    this.particle.node.active = true;
                 })
                 .union()
         }
@@ -185,6 +195,8 @@ export default class Player extends cc.Component {
         this.idle();
         Constants.uiManager.onClose(1);
         this.unbindEvent();
+
+        Constants.game.endGameAfterTime(2);
     }
 
     setAnimIdle(): void {
@@ -209,6 +221,7 @@ export default class Player extends cc.Component {
 
             if (this.node.x > Constants.game.bgCtrl.rangeSpawnItem.y + 3000) {
                 this.stopMove();
+                Constants.game.node.emit(Constants.GAME_EVENT.PLAY_PARTICLE);
             }
         }
     }
@@ -227,16 +240,23 @@ export default class Player extends cc.Component {
             if (check) {
                 this.speedUp(1000);
                 this.eatChar();
+                this.spawnStarVfx(cc.v3(other.node.getWorldPosition()));
+                Player.countCollisionItem++;
             }
             else {
                 this.speedUp(-500);
                 this.collision();
                 this.spawnSmokeVfx(cc.v3(other.node.getWorldPosition()));
+                Player.countCollisionBarrier++;
             }
         }
     }
 
     spawnSmokeVfx(worlfPos: cc.Vec3): void {
         SimplePool.spawn(PoolType.VFX, worlfPos.add(cc.v3(0, 500, 0)), 0);
+    }
+
+    spawnStarVfx(worlfPos: cc.Vec3): void {
+        SimplePool.spawn(PoolType.VFX1, worlfPos.add(cc.v3(0, 500, 0)), 0);
     }
 }

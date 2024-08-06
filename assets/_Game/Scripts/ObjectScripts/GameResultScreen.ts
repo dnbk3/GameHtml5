@@ -25,7 +25,6 @@ export default class GameResultScreen extends cc.Component {
     }
 
     applyDataToGameResultUI() {
-        Constants.soundManager.playClip(22)
         this.frame.setScale(0);
         cc.tween(this.frame)
             .to(1, { scale: 1.5 }, { easing: 'backOut' })
@@ -37,13 +36,9 @@ export default class GameResultScreen extends cc.Component {
         Constants.soundManager.playClip(18);
         Constants.uiManager.onClose(2);
         Constants.uiManager.onOpen(1);
-        Constants.game.playGame();
+        Constants.game.initGame();
     }
 
     home() {
-        Constants.soundManager.playClip(18);
-        Constants.uiManager.onClose(2);
-        Constants.uiManager.onClose(1);
-        Constants.uiManager.onOpen(0);
     }
 }

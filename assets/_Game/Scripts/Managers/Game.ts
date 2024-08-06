@@ -26,27 +26,46 @@ export default class Game extends cc.Component {
         this.enablePhysics();
     }
 
+    initPlayer(): void { }
+
     protected start(): void {
         this.initGame();
+    }
+
+    endGameAfterTime(time: number): void {
+        setTimeout(() => {
+            this.showResult();
+        }, time * 1000);
+    }
+
+    initGame(): void {
+        if (Constants.currState == Constants.GAME_STATE.GameHome) return
+        Constants.currState = Constants.GAME_STATE.GameHome;
+        this.player.init();
+        this.bgCtrl.init();
+        this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI);
 
         setTimeout(this.startMove.bind(this), 1000);
     }
 
-    initGame(): void {
-        Constants.currState = Constants.GAME_STATE.GameHome;
-        this.player.init();
-        this.bgCtrl.init();
-    }
-
     startMove(): void {
+        if (Constants.currState == Constants.GAME_STATE.GamePlay) return
         Constants.currState = Constants.GAME_STATE.GamePlay;
         this.player.startMove();
         Constants.uiManager.onOpen(1);
         this.bgCtrl.setCheckLayer(true);
+        this.node.emit(Constants.GAME_EVENT.START_COUNT_DOWN);
     }
 
     showResult(): void {
-        Constants.currState = Constants.GAME_STATE.GameResult;
+        if (Constants.currState == Constants.GAME_STATE.GameResult) return;
+        this.player.stopMove();
+
+        setTimeout(() => {
+            Constants.currState = Constants.GAME_STATE.GameResult;
+            Constants.uiManager.onOpen(2);
+            this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_RESULT_UI);
+        }, 1000);
     }
 
     public enablePhysics(): void {
@@ -58,5 +77,18 @@ export default class Game extends cc.Component {
                 cc.PhysicsManager.DrawBits.e_jointBit |
                 cc.PhysicsManager.DrawBits.e_shapeBit;
         }
+    }
+
+    getRatingStar(): number {
+        var ratio: number;
+        try {
+            ratio = Player.countCollisionItem / BackgroundCrl.countCharSpawn;
+        } catch (error) {
+            ratio = 0;
+        }
+        if (ratio >= 0.8) return 3;
+        if (ratio >= 0.5) return 2;
+        if (ratio >= 0.3) return 1;
+        return 0;
     }
 }
