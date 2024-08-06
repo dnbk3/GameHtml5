@@ -13,7 +13,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class Player extends cc.Component {
 
-    @property(cc.Node) body: cc.Node = null;
+    @property(cc.Animation) body: cc.Animation = null;
     @property(cc.ParticleSystem) particle: cc.ParticleSystem = null;
     @property(cc.Node) frameListener: cc.Node = null;
 
@@ -27,6 +27,7 @@ export default class Player extends cc.Component {
 
     protected onLoad(): void {
         this._speed = this.speed;
+        this.idle();
     }
 
     init(): void {
@@ -34,21 +35,20 @@ export default class Player extends cc.Component {
         this.setAnimIdle();
     }
 
-    private _isSpeedUp: boolean = false;
-    private _tweenSpeedDown: cc.Tween = null;
-    public speedUp(): void {
-        this._speed = this.speed + 1000;
-        if (!this._tweenSpeedDown) {
-            this._tweenSpeedDown = cc.tween(this)
+    private _tweenSpeedNor: cc.Tween = null;
+    public speedUp(valUp: number): void {
+        this._speed = this.speed + valUp;
+        if (!this._tweenSpeedNor) {
+            this._tweenSpeedNor = cc.tween(this)
                 .delay(2)
-                .call(this.speedDown.bind(this))
+                .call(this.speedNormal.bind(this))
         }
 
-        this._tweenSpeedDown.stop();
-        this._tweenSpeedDown.start();
+        this._tweenSpeedNor.stop();
+        this._tweenSpeedNor.start();
     }
 
-    speedDown(): void {
+    speedNormal(): void {
         this._speed = this.speed;
     }
 
@@ -59,16 +59,52 @@ export default class Player extends cc.Component {
         this._isJumping = true;
         this.setAnimJump();
         if (!this._tweenJump) {
-            this._tweenJump = cc.tween(this.body)
-                .to(0.5, { y: 800 }, { easing: 'quadOut' })
-                .to(0.5, { y: 265 }, { easing: 'quadIn' })
+            this._tweenJump = cc.tween(this.body.node)
+                .to(0.65, { y: 600 }, { easing: 'quadOut' })
+                .to(0.65, { y: 265 }, { easing: 'quadIn' })
                 .call(() => {
                     this._isJumping = false;
-                    this.setAnimRun();
+                    // this.setAnimRun();
                 })
         }
-
         this._tweenJump.start();
+
+        this._tweenWaitChangeAnim && this._tweenWaitChangeAnim.stop();
+        this._tweenWaitChangeAnim = cc.tween(this.body.node)
+            .delay(1.27)
+            .call(this.setAnimRun.bind(this)).start();
+    }
+
+    private _tweenWaitChangeAnim: cc.Tween = null;
+    run(): void {
+        this.particle.node.active = true;
+        this.particle.resetSystem();
+        this._tweenWaitChangeAnim && this._tweenWaitChangeAnim.stop();
+        this.setAnimRun();
+    }
+
+    eatChar(): void {
+        this.setAnimEat();
+
+        this._tweenWaitChangeAnim && this._tweenWaitChangeAnim.stop();
+        this._tweenWaitChangeAnim = cc.tween(this.body.node)
+            .delay(1)
+            .call(this.setAnimRun.bind(this)).start();
+    }
+
+    collision(): void {
+        this.setAnimCollider();
+
+        this._tweenWaitChangeAnim && this._tweenWaitChangeAnim.stop();
+        this._tweenWaitChangeAnim = cc.tween(this.body.node)
+            .delay(1.2)
+            .call(this.setAnimRun.bind(this)).start();
+    }
+
+    idle(): void {
+        this.particle.node.active = false;
+        this._tweenWaitChangeAnim && this._tweenWaitChangeAnim.stop();
+        this.setAnimIdle();
     }
 
     bindEvent(): void {
@@ -134,7 +170,7 @@ export default class Player extends cc.Component {
 
     startMove(): void {
         this.enableMove = true;
-        this.setAnimRun();
+        this.run();
         this.bindEvent();
     }
 
@@ -145,20 +181,19 @@ export default class Player extends cc.Component {
     }
 
     setAnimIdle(): void {
-        this.particle.node.active = false;
+        this.body.play("Idle");
     }
     setAnimRun(): void {
-        this.particle.node.active = true;
-        this.particle.resetSystem();
+        this.body.play("Run");
     }
     setAnimEat(): void {
-        this.particle.node.active = false;
+        this.body.play("Eat");
     }
     setAnimJump(): void {
-        this.particle.node.active = false;
+        this.body.play("Jump");
     }
     setAnimCollider(): void {
-        this.particle.node.active = false;
+        this.body.play("Collision");
     }
 
     protected update(dt: number): void {
@@ -172,7 +207,7 @@ export default class Player extends cc.Component {
     }
 
     private checkJump(): boolean {
-        if (this.body.y > 300) return true;
+        if (this.body.node.y > 300) return true;
         return false;
     }
 
