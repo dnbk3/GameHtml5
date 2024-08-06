@@ -67,6 +67,7 @@ export default class Player extends cc.Component {
     jump(): void {
         if (this._isJumping) return;
         this._isJumping = true;
+        Constants.soundManager.playClip(4);
         this.setAnimJump();
         this.particle.node.active = false;
         if (!this._tweenJump) {
@@ -191,6 +192,7 @@ export default class Player extends cc.Component {
     }
 
     stopMove(): void {
+        if (!this.enableMove) return;
         this.enableMove = false;
         this.idle();
         // Constants.uiManager.onClose(1);
@@ -242,12 +244,14 @@ export default class Player extends cc.Component {
                 this.eatChar();
                 this.spawnStarVfx(cc.v3(other.node.getWorldPosition()));
                 Player.countCollisionItem++;
+                this.playRandomVfxWin();
             }
             else {
                 this.speedUp(-500);
                 this.collision();
                 this.spawnSmokeVfx(cc.v3(other.node.getWorldPosition()));
                 Player.countCollisionBarrier++;
+                this.playRandomVfxFall();
             }
         }
     }
@@ -258,5 +262,15 @@ export default class Player extends cc.Component {
 
     spawnStarVfx(worlfPos: cc.Vec3): void {
         SimplePool.spawn(PoolType.VFX1, worlfPos.add(cc.v3(0, 500, 0)), 0);
+    }
+
+    playRandomVfxWin(): void {
+        Constants.soundManager.playClip(6);
+        setTimeout(() => {
+            Constants.soundManager.playClip(Math.floor(Math.random() * 3) + 7);
+        }, 750);
+    }
+    playRandomVfxFall(): void {
+        Constants.soundManager.playClip(Math.floor(Math.random() * 2) + 10);
     }
 }

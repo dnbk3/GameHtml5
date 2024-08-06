@@ -64,7 +64,8 @@ export default class GamePlayScreen extends cc.Component {
             if (this._currtime <= 0) {
                 this._currtime = 0;
                 this._enableCountTime = false;
-                Constants.game.showResult();
+                Constants.soundManager.playClip(14);
+                Constants.game.endGameAfterTime(3);
             }
 
             this.timeLabel.string = Utilities.formatTime(this._currtime);
@@ -72,7 +73,7 @@ export default class GamePlayScreen extends cc.Component {
     }
 
     playParticle(): void {
-
+        Constants.soundManager.playClip(5);
         this.particle1.node.active = true;
         this.particle2.node.active = true;
 

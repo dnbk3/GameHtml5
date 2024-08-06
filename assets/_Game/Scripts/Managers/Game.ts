@@ -33,6 +33,8 @@ export default class Game extends cc.Component {
     }
 
     endGameAfterTime(time: number): void {
+        this.player.stopMove();
+        Constants.currState = Constants.GAME_STATE.NONE;
         setTimeout(() => {
             this.showResult();
         }, time * 1000);
@@ -41,6 +43,11 @@ export default class Game extends cc.Component {
     initGame(): void {
         if (Constants.currState == Constants.GAME_STATE.GameHome) return
         Constants.currState = Constants.GAME_STATE.GameHome;
+        Constants.soundManager.playClip(0, true);
+        setTimeout(() => {
+            Constants.soundManager.playClip(1);
+        }, 500);
+
         this.player.init();
         this.bgCtrl.init();
         Constants.uiManager.onOpen(0);

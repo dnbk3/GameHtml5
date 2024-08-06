@@ -28,24 +28,28 @@ export default class HomeScreen extends cc.Component {
             .call(() => {
                 this.label.node.active = true;
                 this.label.string = "3";
+                Constants.soundManager.playClip(2);
             })
             .to(0, { scale: 1.5 })
             .to(0.5, { scale: 1 })
             .delay(0.5)
             .call(() => {
                 this.label.string = "2";
+                Constants.soundManager.playClip(2);
             })
             .to(0, { scale: 1.5 })
             .to(0.5, { scale: 1 })
             .delay(0.5)
             .call(() => {
                 this.label.string = "1";
+                Constants.soundManager.playClip(2);
             })
             .to(0, { scale: 1.5 })
             .to(0.5, { scale: 1 })
             .delay(0.5)
             .call(() => {
                 this.label.string = "Start!";
+                Constants.soundManager.playClip(3);
             })
             .to(0, { scale: 1.5 })
             .to(0.5, { scale: 1 })

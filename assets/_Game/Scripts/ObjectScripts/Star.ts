@@ -25,6 +25,10 @@ export default class Stars extends cc.Component {
                 this.showStar(i, delay + 0.3 * i);
             }
         });
+
+        setTimeout(() => {
+            Constants.soundManager.playClip(12);
+        }, delay * 1000 + index * 300 + 200);
     }
 
     showStar(index: number, delay: number = 0) {
@@ -34,7 +38,7 @@ export default class Stars extends cc.Component {
         cc.tween(element)
             .delay(delay)
             .call(() => {
-                Constants.soundManager.playClip(21);
+                Constants.soundManager.playClip(13);
             })
             .to(0.8, { scale: 1 }, { easing: 'backOut' })
             .start();
