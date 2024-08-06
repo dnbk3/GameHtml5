@@ -34,14 +34,14 @@ export default class Player extends cc.Component {
     jump(): void {
         if (this._isJumping) return;
         this._isJumping = true;
-
+        this.setAnimJump();
         if (!this._tweenJump) {
             this._tweenJump = cc.tween(this.body)
-                .to(0.5, { y: 600 }, { easing: 'sineOut' })
-                .delay(0.25)
-                .to(0.5, { y: 265 }, { easing: 'sineIn' })
+                .to(0.5, { y: 800 }, { easing: 'quadOut' })
+                .to(0.5, { y: 265 }, { easing: 'quadIn' })
                 .call(() => {
                     this._isJumping = false;
+                    this.setAnimRun();
                 })
         }
 

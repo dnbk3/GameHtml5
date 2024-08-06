@@ -42,6 +42,7 @@ export default class Game extends cc.Component {
         Constants.currState = Constants.GAME_STATE.GamePlay;
         this.player.startMove();
         Constants.uiManager.onOpen(1);
+        this.bgCtrl.setCheckLayer(true);
     }
 
     showResult(): void {
