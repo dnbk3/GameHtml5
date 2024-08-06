@@ -1127,7 +1127,7 @@
     "rangeSpawnItem": {
       "__type__": "cc.Vec2",
       "x": 1500,
-      "y": 30000
+      "y": 35000
     },
     "randomSpace": {
       "__type__": "cc.Vec2",

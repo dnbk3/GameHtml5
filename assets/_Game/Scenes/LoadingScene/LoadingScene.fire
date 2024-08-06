@@ -255,7 +255,7 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 144,
-      "g": 175,
+      "g": 242,
       "b": 255,
       "a": 255
     },
@@ -474,7 +474,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "7c584bc9-9cf6-4c09-a6ea-2d2d38591221"
+      "__uuid__": "7ac050cf-e5ad-429f-a79a-adf67bbcf673"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -759,9 +759,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 19,
+      "g": 233,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
@@ -864,8 +864,8 @@
     },
     "_enabled": true,
     "nameScene": "GamePlay",
-    "time": 1,
-    "ratio": 0.8,
+    "time": 3,
+    "ratio": 0.01,
     "loadingBar": {
       "__id__": 14
     },
