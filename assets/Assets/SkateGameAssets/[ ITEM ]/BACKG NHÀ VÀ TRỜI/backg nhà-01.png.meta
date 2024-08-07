@@ -8,8 +8,8 @@
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
-  "width": 16384,
-  "height": 654,
+  "width": 4096,
+  "height": 164,
   "platformSettings": {
     "default": {
       "formats": [
@@ -33,10 +33,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 16384,
-      "height": 654,
-      "rawWidth": 16384,
-      "rawHeight": 654,
+      "width": 4096,
+      "height": 164,
+      "rawWidth": 4096,
+      "rawHeight": 164,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

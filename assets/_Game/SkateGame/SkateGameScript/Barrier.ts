@@ -5,9 +5,9 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
-import PoolMember from "../../Scripts/Pool/PoolMember";
-import { PoolType } from "../../Scripts/Pool/PoolType";
-import SimplePool from "../../Scripts/Pool/SimplePool";
+import PoolMember from "./Pool/PoolMember";
+import SimplePool from "./Pool/SimplePool";
+
 
 const { ccclass, property } = cc._decorator;
 
@@ -24,7 +24,6 @@ export default class Barrier extends PoolMember {
     }
 
     actionCollider(): boolean {
-        // SimplePool.spawn(PoolType.VFX, this.node.getWorldPosition(), 0);
         SimplePool.despawn(this);
         return false;
     }

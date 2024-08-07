@@ -6,9 +6,9 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import { Constants } from "../../Scripts/Managers/Constants";
-import { PoolType } from "../../Scripts/Pool/PoolType";
-import SimplePool from "../../Scripts/Pool/SimplePool";
 import Barrier from "./Barrier";
+import { PoolType } from "./Pool/PoolType";
+import SimplePool from "./Pool/SimplePool";
 
 const { ccclass, property } = cc._decorator;
 
@@ -73,7 +73,7 @@ export default class Player extends cc.Component {
         if (!this._tweenJump) {
             this._tweenJump = cc.tween(this.body.node)
                 .to(0.5, { y: 600 }, { easing: 'quadOut' })
-                .to(0.5, { y: 265 }, { easing: 'quadIn' })
+                .to(0.5, { y: 200 }, { easing: 'quadIn' })
                 .call(() => {
                     this._isJumping = false;
                     this.setAnimRun();
@@ -88,7 +88,7 @@ export default class Player extends cc.Component {
         if (!this._isJumping) return;
         this._isJumping = false;
         this._tweenJump && this._tweenJump.stop();
-        this.body.node.y = 265;
+        this.body.node.y = 200;
         this.setAnimRun();
     }
 

@@ -6,10 +6,10 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import { Constants } from "../../Scripts/Managers/Constants";
-import PoolMember from "../../Scripts/Pool/PoolMember";
-import { PoolType } from "../../Scripts/Pool/PoolType";
-import SimplePool from "../../Scripts/Pool/SimplePool";
 import LayerGame from "./LayerGame";
+import PoolMember from "./Pool/PoolMember";
+import { PoolType } from "./Pool/PoolType";
+import SimplePool from "./Pool/SimplePool";
 
 const { ccclass, property } = cc._decorator;
 
@@ -26,10 +26,6 @@ export default class BackgroundCrl extends cc.Component {
     @property(cc.Node) finishLine: cc.Node = null;
 
     private _listItem: PoolMember[] = [];
-
-    protected onLoad(): void {
-        BackgroundCrl.countCharSpawn = 0;
-    }
 
     private _checkLayer: boolean = false;
     public setCheckLayer(value: boolean) {
@@ -87,11 +83,12 @@ export default class BackgroundCrl extends cc.Component {
 
         let item: PoolMember = SimplePool.spawn(this.randomType(), cc.Vec3.ZERO, 0);
         if (item.poolType == PoolType.ChuCai) {
-            item.getComponent("ChuCai").setLetter(this.getRandomChar());
+            item.node.getComponent("ChuCai").setLetter(this.getRandomChar());
             BackgroundCrl.countCharSpawn++;
         }
         item.node.x = posX;
         item.node.y = this.randomY(item);
+        item.node.setPosition(posX, this.randomY(item));
         this._listItem.push(item);
     }
 

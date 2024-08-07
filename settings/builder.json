@@ -1,8 +1,10 @@
 {
   "title": "GameHtml5",
   "packageName": "org.cocos2d.demo",
-  "startScene": "2c8e6631-9379-439a-bba1-2cf6b87a3dc0",
-  "excludeScenes": [],
+  "startScene": "1b09b128-4352-4ed2-a418-635fdd27f8f1",
+  "excludeScenes": [
+    "2c8e6631-9379-439a-bba1-2cf6b87a3dc0"
+  ],
   "orientation": {
     "landscapeRight": true,
     "landscapeLeft": true,
