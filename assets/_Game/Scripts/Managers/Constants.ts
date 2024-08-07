@@ -7,7 +7,6 @@
 
 import Game from "./Game";
 import SoundManager from "./SoundManager";
-import Timeline from "./TimeLine";
 import UIManager from "./UIManager";
 
 enum GAME_STATE {
@@ -32,7 +31,6 @@ export class Constants {
     static game: Game;
     static soundManager: SoundManager;
     static uiManager: UIManager;
-    static timeLine: Timeline;
 
     static GAME_STATE = GAME_STATE;
     static GAME_EVENT = GAME_EVENT;

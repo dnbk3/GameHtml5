@@ -161,7 +161,7 @@ export default class Player extends cc.Component {
         this._tmpRow = row;
 
         const distance = Math.abs(this.node.y - y);
-        const time = distance / this.speed;
+        const time = distance / this.speed * 0.75;
         this.tweenMoveX = cc.tween(this.node).to(time, { y: y })
             .call(this._changeRow.bind(this, row)).start();
     }

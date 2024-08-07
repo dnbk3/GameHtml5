@@ -7,7 +7,6 @@
 
 import Utilities from "../Helper/Utilities";
 import { Constants } from "../Managers/Constants";
-import Timer from "./Timer";
 
 const { ccclass, property } = cc._decorator;
 
