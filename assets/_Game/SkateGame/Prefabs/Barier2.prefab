@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Barrier3",
+    "_name": "Barier2",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -43,8 +43,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 256,
-      "height": 256
+      "width": 0,
+      "height": 0
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -55,7 +55,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        3249.66,
+        0,
         0,
         0,
         0,
@@ -76,8 +76,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 3,
-    "groupIndex": 3,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": ""
   },
   {
@@ -107,8 +107,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 286,
-      "height": 261
+      "width": 165,
+      "height": 106
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -120,14 +120,14 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        44.369,
+        0,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        1.5,
+        1.5,
         1
       ]
     },
@@ -140,8 +140,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 3,
-    "groupIndex": 3,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": ""
   },
   {
@@ -160,7 +160,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "86dc789d-6404-4c34-9271-7fc3c408b36b"
+      "__uuid__": "f297dd48-90ef-4079-8385-cb644fa8e16a"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -184,8 +184,19 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "7ddkE4Q2hOmbP/+Ye5xCg1",
+    "fileId": "e7Ok1K2QBAWoqXwffIysiV",
     "sync": false
+  },
+  {
+    "__type__": "8e023btXatI+ZKdB+eLUoWf",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "poolType": 2,
+    "_id": ""
   },
   {
     "__type__": "cc.BoxCollider",
@@ -203,20 +214,9 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 256,
-      "height": 256
+      "width": 261,
+      "height": 190
     },
-    "_id": ""
-  },
-  {
-    "__type__": "8e023btXatI+ZKdB+eLUoWf",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "poolType": 2,
     "_id": ""
   },
   {

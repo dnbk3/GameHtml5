@@ -5,9 +5,9 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import PoolControl from "../../SkateGame/SkateGameScript/Pool/PoolControl";
 import Game from "./Game";
 import SoundManager from "./SoundManager";
-import Timeline from "./TimeLine";
 import UIManager from "./UIManager";
 
 enum GAME_STATE {
@@ -32,7 +32,7 @@ export class Constants {
     static game: Game;
     static soundManager: SoundManager;
     static uiManager: UIManager;
-    static timeLine: Timeline;
+    static poolControl: PoolControl;
 
     static GAME_STATE = GAME_STATE;
     static GAME_EVENT = GAME_EVENT;

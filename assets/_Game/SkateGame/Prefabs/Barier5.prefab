@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Barrier5",
+    "_name": "Barier5",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 256,
-      "height": 256
+      "width": 0,
+      "height": 0
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -58,8 +58,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        1624.71,
-        -15.803,
+        0,
+        0,
         0,
         0,
         0,
@@ -79,8 +79,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 3,
-    "groupIndex": 3,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": ""
   },
   {
@@ -256,7 +256,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "25PAv41GRKTaxPO+R8A7Cc",
+    "fileId": "6cJ/Lcr5JHZ5rN0BgYyouf",
     "sync": false
   },
   {
@@ -283,14 +283,14 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 48,
-      "b": 48,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 119.4,
-      "height": 256
+      "width": 176.9,
+      "height": 331.6
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -302,15 +302,15 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -21.352,
+        0,
         0,
         0,
         0,
         0,
         1,
-        1.3,
-        1.3,
-        1.3
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
@@ -322,8 +322,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 3,
-    "groupIndex": 3,
+    "_groupIndex": 0,
+    "groupIndex": 0,
     "_id": ""
   },
   {
@@ -341,10 +341,10 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "h",
-    "_N$string": "h",
-    "_fontSize": 200,
-    "_lineHeight": 200,
+    "_string": "H",
+    "_N$string": "H",
+    "_fontSize": 260,
+    "_lineHeight": 260,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "dba64698-55bc-48b7-82ac-df1d2d258188"
@@ -387,7 +387,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "f2yu5HIPpI9ZHAtU0YaKKT",
+    "fileId": "9d7AJ+EQ5M/rbDt2VvOBr+",
     "sync": false
   },
   {

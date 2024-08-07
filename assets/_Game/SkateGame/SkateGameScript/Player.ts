@@ -7,8 +7,7 @@
 
 import { Constants } from "../../Scripts/Managers/Constants";
 import Barrier from "./Barrier";
-import { PoolType } from "./Pool/PoolType";
-import SimplePool from "./Pool/SimplePool";
+import VFX from "./Pool/VFX";
 
 const { ccclass, property } = cc._decorator;
 
@@ -23,6 +22,10 @@ export default class Player extends cc.Component {
     @property(cc.Node) frameListener: cc.Node = null;
 
     @property speed: number = 1000;
+
+    @property(VFX) vfx1: VFX = null;
+    @property(VFX) vfx2: VFX = null;
+
     private _speed: number = 1000;
 
     public enableMove: boolean = false;
@@ -35,6 +38,9 @@ export default class Player extends cc.Component {
         this._speed = this.speed;
         this.idle();
         this._posStart = this.node.getPosition();
+
+        this.vfx1.node.active = false;
+        this.vfx2.node.active = false;
     }
 
     init(): void {
@@ -161,7 +167,7 @@ export default class Player extends cc.Component {
         this._tmpRow = row;
 
         const distance = Math.abs(this.node.y - y);
-        const time = distance / this.speed;
+        const time = distance / this.speed * 0.7;
         this.tweenMoveX = cc.tween(this.node).to(time, { y: y })
             .call(this._changeRow.bind(this, row)).start();
     }
@@ -242,33 +248,40 @@ export default class Player extends cc.Component {
             if (check) {
                 this.speedUp(1000);
                 this.eatChar();
-                this.spawnStarVfx(cc.v3(other.node.getWorldPosition()));
+                this.spawnStarVfx();
                 Player.countCollisionItem++;
                 this.playRandomVfxWin();
             }
             else {
                 this.speedUp(-500);
                 this.collision();
-                this.spawnSmokeVfx(cc.v3(other.node.getWorldPosition()));
+                this.spawnSmokeVfx();
                 Player.countCollisionBarrier++;
                 this.playRandomVfxFall();
             }
         }
     }
 
-    spawnSmokeVfx(worlfPos: cc.Vec3): void {
-        SimplePool.spawn(PoolType.VFX, worlfPos.add(cc.v3(0, 500, 0)), 0);
+    spawnSmokeVfx(): void {
+        // var node = Constants.poolControl.spawn(6, Constants.game.node);
+        // node.setPosition(this.node.getPosition().add(cc.v2(200, 100)));
+        // node.getComponent(VFX).play();
+
+        this.vfx1.play();
     }
 
-    spawnStarVfx(worlfPos: cc.Vec3): void {
-        SimplePool.spawn(PoolType.VFX1, worlfPos.add(cc.v3(0, 500, 0)), 0);
+    spawnStarVfx(): void {
+        // var node = Constants.poolControl.spawn(0, Constants.game.node);
+        // node.setPosition(this.node.getPosition().add(cc.v2(400, 100)));
+        // node.getComponent(VFX).play();
+        this.vfx2.play();
     }
 
     playRandomVfxWin(): void {
         Constants.soundManager.playClip(6);
         setTimeout(() => {
             Constants.soundManager.playClip(Math.floor(Math.random() * 3) + 7);
-        }, 750);
+        }, 400);
     }
     playRandomVfxFall(): void {
         Constants.soundManager.playClip(Math.floor(Math.random() * 2) + 10);

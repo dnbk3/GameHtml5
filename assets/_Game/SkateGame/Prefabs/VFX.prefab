@@ -120,7 +120,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -300,
+        0,
         0,
         0,
         0,
@@ -165,7 +165,7 @@
       "__uuid__": "feef7a94-ac94-4989-a627-24e50ff63eac"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 14.9,
@@ -296,7 +296,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -300,
+        0,
         0,
         0,
         0,
@@ -341,7 +341,7 @@
       "__uuid__": "b8573e0d-1aca-49da-a3f9-30998a2b47a7"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 14.9,

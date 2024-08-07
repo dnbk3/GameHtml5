@@ -34,9 +34,10 @@ export default class Game extends cc.Component {
     endGameAfterTime(time: number): void {
         this.player.stopMove();
         Constants.currState = Constants.GAME_STATE.NONE;
-        setTimeout(() => {
-            this.showResult();
-        }, time * 1000);
+        // setTimeout(() => {
+        //     this.showResult();
+        // }, time * 1000);
+        cc.tween(this.node).delay(time).call(this.showResult.bind(this)).start();
     }
 
     initGame(): void {
@@ -54,6 +55,7 @@ export default class Game extends cc.Component {
         this.node.emit(Constants.GAME_EVENT.COUNT_DOWN_HOMESCREEN, 1);
         Constants.uiManager.onOpen(1);
         setTimeout(this.startMove.bind(this), 5000);
+        // cc.tween(this.node).delay(5).call(this.startMove.bind(this)).start();
     }
 
     startMove(): void {

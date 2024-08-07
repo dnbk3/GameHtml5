@@ -864,7 +864,7 @@
     },
     "_enabled": true,
     "nameScene": "GamePlay",
-    "time": 3,
+    "time": 5,
     "ratio": 0.01,
     "loadingBar": {
       "__id__": 14

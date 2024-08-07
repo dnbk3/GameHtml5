@@ -56,7 +56,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        300,
+        0,
         0,
         0,
         0,
@@ -120,7 +120,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -300,
+        0,
         0,
         0,
         0,
@@ -165,7 +165,7 @@
       "__uuid__": "b2bea4d5-2b84-4a7c-8395-41410c59a50f"
     },
     "_texture": null,
-    "_stopped": false,
+    "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 14.9,
@@ -296,7 +296,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -300,
+        0,
         0,
         0,
         0,
@@ -341,7 +341,7 @@
       "__uuid__": "c80a71b9-5e51-4522-bda9-a53d0d378a99"
     },
     "_texture": null,
-    "_stopped": false,
+    "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 14.9,
@@ -440,7 +440,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "poolType": 7,
+    "poolType": 0,
     "anim": [
       {
         "__id__": 3
@@ -449,7 +449,7 @@
         "__id__": 6
       }
     ],
-    "timeAlive": 1.5,
+    "timeAlive": 1,
     "_id": ""
   },
   {

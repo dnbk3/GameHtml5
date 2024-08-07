@@ -5,15 +5,12 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-import { PoolType } from "./PoolType";
-import SimplePool from "./SimplePool";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class PoolMember extends cc.Component {
-    @property({ type: cc.Enum(PoolType) })
-    public poolType: PoolType = PoolType.None;
+    @property poolType: number = 0;
 
     init(row: number): void {
         // override this method

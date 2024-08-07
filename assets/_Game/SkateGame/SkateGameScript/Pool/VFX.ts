@@ -5,9 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import { Constants } from "../../../Scripts/Managers/Constants";
 import PoolMember from "./PoolMember";
-import SimplePool from "./SimplePool";
-
 
 const { ccclass, property } = cc._decorator;
 
@@ -20,8 +19,8 @@ export default class VFX extends PoolMember {
     @property({ type: cc.Float })
     timeAlive: number = 1;
 
-    protected onEnable(): void {
-
+    public play(): void {
+        this.node.active = true;
         this.anim.forEach((anim) => {
             anim.resetSystem();
         });
@@ -29,7 +28,7 @@ export default class VFX extends PoolMember {
         // cc.tween(this.node).delay(0.5).call(()=> SimplePool.despawn(this));
         //delay 0.5s thi despawn
         setTimeout(() => {
-            SimplePool.despawn(this);
+            this.node.active = false;
         }, this.timeAlive * 1000);
     }
 }

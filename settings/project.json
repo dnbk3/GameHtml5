@@ -1,9 +1,9 @@
 {
   "group-list": [
     "default",
-    "Vach",
+    "Obj",
     "Player",
-    "VatCan"
+    "abc"
   ],
   "collision-matrix": [
     [
@@ -11,35 +11,24 @@
     ],
     [
       false,
-      false
-    ],
-    [
-      false,
-      false,
       false,
       true
     ],
     [
       false,
-      false,
       true,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
       false
     ]
   ],
   "excluded-modules": [
-    "DragonBones",
-    "Graphics",
-    "Intersection",
-    "Mask",
-    "ScrollView",
-    "TiledMap",
-    "VideoPlayer",
-    "3D",
-    "3D Primitive",
-    "3D Physics/cannon.js",
-    "3D Physics/Builtin",
-    "3D Particle",
-    "SafeArea"
+    "3D Physics/Builtin"
   ],
   "preview-port": 7456,
   "design-resolution-width": 1920,

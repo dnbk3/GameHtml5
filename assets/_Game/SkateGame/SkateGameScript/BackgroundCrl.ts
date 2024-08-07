@@ -6,10 +6,9 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import { Constants } from "../../Scripts/Managers/Constants";
+import Barrier from "./Barrier";
 import LayerGame from "./LayerGame";
 import PoolMember from "./Pool/PoolMember";
-import { PoolType } from "./Pool/PoolType";
-import SimplePool from "./Pool/SimplePool";
 
 const { ccclass, property } = cc._decorator;
 
@@ -17,6 +16,8 @@ const { ccclass, property } = cc._decorator;
 export default class BackgroundCrl extends cc.Component {
 
     static countCharSpawn: number = 0;
+
+    @property(cc.Node) parentItem: cc.Node = null;
 
     @property(LayerGame) layerGame1: LayerGame = null;
     @property(LayerGame) layerGame2: LayerGame = null;
@@ -27,11 +28,17 @@ export default class BackgroundCrl extends cc.Component {
 
     private _listItem: PoolMember[] = [];
 
+    protected onLoad(): void {
+        this.parentItem.children.forEach(item => {
+            this._listItem.push(item.getComponent(PoolMember));
+        });
+    }
+
     private _checkLayer: boolean = false;
     public setCheckLayer(value: boolean) {
         this._checkLayer = value;
     }
-    protected lateUpdate(dt: number): void {
+    protected update(dt: number): void {
         if (!this._checkLayer) return;
         const posPlayer = Constants.game.player.node.getPosition();
         const range1 = this.layerGame1.getRange();
@@ -51,7 +58,6 @@ export default class BackgroundCrl extends cc.Component {
     private checkLayer(layerBefore: LayerGame, layerAfter: LayerGame) {
         const distance = layerAfter.node.position.x - layerBefore.node.position.x;
         if (Math.abs(distance - 8192) < 5) return;
-
         const posBefore = layerBefore.node.getPosition();
         layerAfter.node.setPosition(posBefore.x + 8192, posBefore.y);
     }
@@ -59,6 +65,7 @@ export default class BackgroundCrl extends cc.Component {
     init(): void {
         BackgroundCrl.countCharSpawn = 0;
         this.destroyAllItem();
+        this.shuffleArray();
         this.spawnAllItem();
         this.finishLine.x = this.rangeSpawnItem.y + 2000;
         this.layerGame1.reset();
@@ -67,27 +74,35 @@ export default class BackgroundCrl extends cc.Component {
 
     destroyAllItem(): void {
         this._listItem.forEach(item => {
-            SimplePool.despawn(item);
+            item.node.active = false;
         });
+    }
+
+    shuffleArray(): void {
+        for (let i = this._listItem.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this._listItem[i], this._listItem[j]] = [this._listItem[j], this._listItem[i]];
+        }
     }
 
     spawnAllItem(): void {
         let i: number;
+        let index: number = 0;
         for (i = this.rangeSpawnItem.x; i <= this.rangeSpawnItem.y;) {
-            this.spawnItem(i);
+            if (index >= this._listItem.length) break;
+            this.spawnItem(i, index);
             i += this.randomDistance();
+            index++;
         }
     }
 
-    spawnItem(posX: number): void {
-
-        let item: PoolMember = SimplePool.spawn(this.randomType(), cc.Vec3.ZERO, 0);
-        if (item.poolType == PoolType.ChuCai) {
+    spawnItem(posX: number, index): void {
+        let item = this._listItem[index];
+        item.node.active = true;
+        if (item.poolType === 5) {
             item.node.getComponent("ChuCai").setLetter(this.getRandomChar());
             BackgroundCrl.countCharSpawn++;
         }
-        item.node.x = posX;
-        item.node.y = this.randomY(item);
         item.node.setPosition(posX, this.randomY(item));
         this._listItem.push(item);
     }
@@ -115,10 +130,10 @@ export default class BackgroundCrl extends cc.Component {
         }
     }
 
-    randomType(): PoolType {
+    randomType(): number {
         var i = Math.floor(Math.random() * 4 + 2);
-        if (i >= 5) return PoolType.ChuCai;
-        return i as PoolType;
+        if (i >= 5) return 5;
+        return i;
     }
 
     reset(): void {
