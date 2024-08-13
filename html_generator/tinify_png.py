@@ -6,7 +6,7 @@ from os import path
 import os
 import os.path  
 ImageFilePath = "build/web-mobile/assets"
-apiKey = "rrFR0RygkPJ8yhQDDxYdC2rLvnPJlBYR"
+apiKey = "HLglljh7V6V8ThpjSFZX828Pz7zPG6M0"
 if len(apiKey) <= 0:  
     apiKey="3nCqhHBt7Ks0kM1F4b6G0kKQ8CZrlnhF"
 elif len(apiKey) <= 0:
