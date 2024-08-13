@@ -38,6 +38,32 @@ export default class GamePlayScreen extends cc.Component {
         Constants.game.node.on(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI, this.init, this);
         Constants.game.node.on(Constants.GAME_EVENT.PLAY_PARTICLE, this.playParticle, this);
         this.init();
+
+        this.resize();
+        cc.view.setResizeCallback(this.resize.bind(this));
+    }
+
+    resize() {
+        const screenSize = cc.view.getFrameSize();
+        const screenRatio = screenSize.width / screenSize.height;
+
+        var gameWidth = 1080;
+        var gameHeight = 1920;
+
+        if (screenSize.width > screenSize.height) {
+            gameWidth = 1668 * screenRatio;
+            gameHeight = 1668;
+        }
+        else {
+            gameWidth = 2388;
+            gameHeight = 2388 / screenRatio;
+        }
+
+
+        this.nodeBack.setPosition(cc.v2((-gameWidth / 2) + 124, (gameHeight / 2) - 134));
+        this.nodeText.setPosition(cc.v2(-(gameWidth / 2) + 194, (-gameHeight / 2) + 134));
+        this.nodeTime.setPosition(cc.v2((gameWidth / 2) - 294, (-gameHeight / 2) + 134));
+
     }
 
     onButtonBackClick(): void {
