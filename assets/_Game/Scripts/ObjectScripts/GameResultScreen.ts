@@ -39,5 +39,8 @@ export default class GameResultScreen extends cc.Component {
     }
 
     home() {
+        Constants.uiManager.onClose(2);
+        Constants.uiManager.onOpen(1);
+        Constants.game.initGame();
     }
 }

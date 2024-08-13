@@ -97,7 +97,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 3
@@ -1353,6 +1353,15 @@
       "__id__": 1
     },
     "_enabled": true,
+    "nodeBack": {
+      "__id__": 7
+    },
+    "nodeText": {
+      "__id__": 12
+    },
+    "nodeTime": {
+      "__id__": 18
+    },
     "timeLabel": {
       "__id__": 20
     },

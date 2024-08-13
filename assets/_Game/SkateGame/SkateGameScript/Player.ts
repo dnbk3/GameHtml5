@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import Utilities from "../../Scripts/Helper/Utilities";
 import { Constants } from "../../Scripts/Managers/Constants";
 import Barrier from "./Barrier";
 import { PoolType } from "./Pool/PoolType";
@@ -39,9 +40,13 @@ export default class Player extends cc.Component {
 
     init(): void {
         this.enableMove = false;
-        this.setAnimIdle();
+        // this.setAnimIdle();
+        this.unbindEvent();
+        this.idle();
         Player.countCollisionBarrier = 0;
         Player.countCollisionItem = 0;
+        this.row = 1;
+        this._tmpRow = -1;
         this.node.setPosition(this._posStart);
     }
 
@@ -137,12 +142,19 @@ export default class Player extends cc.Component {
 
     private posStart: cc.Vec2 = cc.v2(0, 0);
     private touched: boolean = false;
-    onTouchStart(event: cc.Event.EventTouch): void {
+    onTouchStart(event: cc.Touch): void {
         if (this.touched) return;
+        const posCheck = this.getPosByTouchNode(event, this.frameListener);
+        if (posCheck.x > 100) {
+            this.jump();
+            return;
+        }
         this.posStart = event.getLocation();
+
+
         this.touched = true;
     }
-    onTouchEnd(event: cc.Event.EventTouch): void {
+    onTouchEnd(event: cc.Touch): void {
         if (!this.touched) return;
         this.touched = false;
         const posEnd = event.getLocation().sub(this.posStart);
@@ -240,7 +252,7 @@ export default class Player extends cc.Component {
         if (otherComponent.row === this.row || otherComponent.row === this._tmpRow) {
             const check = otherComponent.actionCollider();
             if (check) {
-                this.speedUp(1000);
+                this.speedUp(500);
                 this.eatChar();
                 this.spawnStarVfx(cc.v3(other.node.getWorldPosition()));
                 Player.countCollisionItem++;
@@ -267,10 +279,33 @@ export default class Player extends cc.Component {
     playRandomVfxWin(): void {
         Constants.soundManager.playClip(6);
         setTimeout(() => {
-            Constants.soundManager.playClip(Math.floor(Math.random() * 3) + 7);
-        }, 750);
+            if (Math.random() > 0.3) {
+                Constants.soundManager.playClip(Math.floor(Math.random() * 3) + 7);
+            }
+            else {
+                Constants.soundManager.playClip(15);
+            }
+        }, 550);
+
     }
     playRandomVfxFall(): void {
         Constants.soundManager.playClip(Math.floor(Math.random() * 2) + 10);
+    }
+
+    getWorldPosByTouch(event: cc.Touch): cc.Vec3 {
+        const start = event.getLocation();
+        const camera = cc.Camera.main;
+        const posCamera = camera.getScreenToWorldPoint(start);
+        return posCamera;
+    }
+
+    getPosByTouch(event: cc.Touch): cc.Vec2 {
+        const posStart = this.node.convertToNodeSpaceAR(this.getWorldPosByTouch(event));
+        return Utilities.vec3ToVec2(posStart);
+    }
+
+    getPosByTouchNode(event: cc.Touch, node: cc.Node): cc.Vec2 {
+        const posStart = node.convertToNodeSpaceAR(this.getWorldPosByTouch(event));
+        return Utilities.vec3ToVec2(posStart);
     }
 }

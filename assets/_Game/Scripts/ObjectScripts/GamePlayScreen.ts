@@ -13,6 +13,10 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GamePlayScreen extends cc.Component {
 
+    @property(cc.Node) nodeBack: cc.Node = null;
+    @property(cc.Node) nodeText: cc.Node = null;
+    @property(cc.Node) nodeTime: cc.Node = null;
+
     @property(cc.Label) timeLabel: cc.Label = null;
     @property countTime: number = 0;
 
@@ -36,7 +40,9 @@ export default class GamePlayScreen extends cc.Component {
         this.init();
     }
 
-    onButtonBackClick(): void { }
+    onButtonBackClick(): void {
+        Constants.game.initGame();
+    }
 
     init() {
         this._currtime = this.countTime;

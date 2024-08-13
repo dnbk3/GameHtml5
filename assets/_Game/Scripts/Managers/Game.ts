@@ -51,9 +51,9 @@ export default class Game extends cc.Component {
         this.bgCtrl.init();
         Constants.uiManager.onOpen(0);
         this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI);
-        this.node.emit(Constants.GAME_EVENT.COUNT_DOWN_HOMESCREEN, 1);
+        this.node.emit(Constants.GAME_EVENT.COUNT_DOWN_HOMESCREEN, 2);
         Constants.uiManager.onOpen(1);
-        setTimeout(this.startMove.bind(this), 5000);
+        setTimeout(this.startMove.bind(this), 6000);
     }
 
     startMove(): void {
@@ -71,6 +71,7 @@ export default class Game extends cc.Component {
         this.player.stopMove();
 
         setTimeout(() => {
+            Constants.soundManager.stopClip(0);
             Constants.currState = Constants.GAME_STATE.GameResult;
             Constants.uiManager.onClose(1);
             Constants.uiManager.onOpen(2);
@@ -81,12 +82,6 @@ export default class Game extends cc.Component {
     public enablePhysics(): void {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getCollisionManager().enabled = true;
-
-        // if (Constants.enableDebugPhysics) {
-        //     cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_aabbBit |
-        //         cc.PhysicsManager.DrawBits.e_jointBit |
-        //         cc.PhysicsManager.DrawBits.e_shapeBit;
-        // }
     }
 
     getRatingStar(): number {
