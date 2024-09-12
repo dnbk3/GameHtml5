@@ -63,7 +63,8 @@ export default class GamePlayScreen extends cc.Component {
         this.nodeBack.setPosition(cc.v2((-gameWidth / 2) + 124, (gameHeight / 2) - 134));
         this.nodeText.setPosition(cc.v2(-(gameWidth / 2) + 194, (-gameHeight / 2) + 134));
         this.nodeTime.setPosition(cc.v2((gameWidth / 2) - 294, (-gameHeight / 2) + 134));
-
+        this.particle1.node.setPosition(cc.v2((gameWidth / 2) + 50, 0));
+        this.particle2.node.setPosition(cc.v2(-(gameWidth / 2) - 50, 0));
     }
 
     onButtonBackClick(): void {

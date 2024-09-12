@@ -97,7 +97,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 3
@@ -1067,13 +1067,13 @@
       "__uuid__": "4e3f49b5-522a-461c-8c7d-d7ba8bbd3f71"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": true,
     "totalParticles": 100,
     "duration": -1,
     "emissionRate": 100,
-    "life": 1.2,
+    "life": 1.5,
     "lifeVar": 0.4,
     "_startColor": {
       "__type__": "cc.Color",
@@ -1129,9 +1129,9 @@
     "gravity": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -500
+      "y": -1000
     },
-    "speed": 1000,
+    "speed": 1500,
     "speedVar": 100,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
@@ -1243,13 +1243,13 @@
       "__uuid__": "4e3f49b5-522a-461c-8c7d-d7ba8bbd3f71"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 100,
     "duration": -1,
     "emissionRate": 100,
-    "life": 1.2,
+    "life": 1.5,
     "lifeVar": 0.4,
     "_startColor": {
       "__type__": "cc.Color",
@@ -1305,9 +1305,9 @@
     "gravity": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -500
+      "y": -1000
     },
-    "speed": 1000,
+    "speed": 1500,
     "speedVar": 100,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,

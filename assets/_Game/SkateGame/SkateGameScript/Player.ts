@@ -30,6 +30,7 @@ export default class Player extends cc.Component {
     public row: number = 1;
     private _tmpRow: number = -1;
     private tweenMoveX: cc.Tween = null;
+    private _isStopCountTime: boolean = false;
 
     private _posStart: cc.Vec2 = cc.v2(0, 0);
     protected onLoad(): void {
@@ -48,6 +49,7 @@ export default class Player extends cc.Component {
         this.row = 1;
         this._tmpRow = -1;
         this.node.setPosition(this._posStart);
+        this._isStopCountTime = false;
     }
 
     private _tweenSpeedNor: cc.Tween = null;
@@ -233,8 +235,14 @@ export default class Player extends cc.Component {
         if (this.enableMove) {
             this.node.x += this._speed * dt;
 
-            if (this.node.x > Constants.game.bgCtrl.rangeSpawnItem.y + 3000) {
+            if (this.node.x > Constants.game.bgCtrl.getRangeSpawnItem().y + 1500 && !this._isStopCountTime) {
+                this._isStopCountTime = true;
+                Constants.game.node.emit(Constants.GAME_EVENT.STOP_COUNT_DOWN);
+            }
+
+            if (this.node.x > Constants.game.bgCtrl.getRangeSpawnItem().y + 3000) {
                 this.stopMove();
+                Constants.soundManager.stopClip(0);
                 Constants.game.node.emit(Constants.GAME_EVENT.PLAY_PARTICLE);
             }
         }

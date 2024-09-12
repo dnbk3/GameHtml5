@@ -25,6 +25,11 @@ export default class BackgroundCrl extends cc.Component {
     @property(cc.Vec2) randomSpace: cc.Vec2 = cc.v2(0, 0);
     @property(cc.Node) finishLine: cc.Node = null;
 
+    private _rangeSpawnItem: cc.Vec2 = cc.v2(0, 0);
+    public getRangeSpawnItem(): cc.Vec2 {
+        return this._rangeSpawnItem;
+    }
+
     private _listItem: PoolMember[] = [];
 
     private _checkLayer: boolean = false;
@@ -57,10 +62,11 @@ export default class BackgroundCrl extends cc.Component {
     }
 
     init(): void {
+        this._rangeSpawnItem = this.rangeSpawnItem;
         BackgroundCrl.countCharSpawn = 0;
         this.destroyAllItem();
         this.spawnAllItem();
-        this.finishLine.x = this.rangeSpawnItem.y + 2000;
+        this.finishLine.x = this._rangeSpawnItem.y + 2000;
         this.layerGame1.reset();
         this.layerGame2.reset();
     }
@@ -77,6 +83,37 @@ export default class BackgroundCrl extends cc.Component {
             this.spawnItem(i);
             i += this.randomDistance();
         }
+        this.checkCountCharSpawn();
+    }
+
+    checkCountCharSpawn() {
+        var count = 0;
+        this._listItem.forEach(item => {
+            if (item.poolType == PoolType.ChuCai) {
+                count++;
+            }
+        });
+        if (count < 10) {
+            var distanceIncrease = 0;
+            for (let i = 0; i < 10 - count; i++) {
+                var distance = this.randomDistance();
+                distanceIncrease += distance;
+                this.spawnItemChuCai(this.rangeSpawnItem.y + distanceIncrease);
+            }
+
+            this._rangeSpawnItem.y += distanceIncrease;
+        }
+    }
+
+    spawnItemChuCai(posX: number): void {
+
+        let item: PoolMember = SimplePool.spawn(PoolType.ChuCai, cc.Vec3.ZERO, 0);
+        item.node.getComponent("ChuCai").setLetter(this.getRandomChar());
+        BackgroundCrl.countCharSpawn++;
+        item.node.x = posX;
+        item.node.y = this.randomY(item);
+        item.node.setPosition(posX, this.randomY(item));
+        this._listItem.push(item);
     }
 
     spawnItem(posX: number): void {
@@ -116,7 +153,7 @@ export default class BackgroundCrl extends cc.Component {
     }
 
     randomType(): PoolType {
-        var i = Math.floor(Math.random() * 4 + 2);
+        var i = Math.floor(Math.random() * 5 + 2);
         if (i >= 5) return PoolType.ChuCai;
         return i as PoolType;
     }

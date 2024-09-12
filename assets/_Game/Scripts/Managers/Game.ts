@@ -28,7 +28,7 @@ export default class Game extends cc.Component {
     initPlayer(): void { }
 
     protected start(): void {
-        this.initGame();
+        this.initGame(true);
     }
 
     endGameAfterTime(time: number): void {
@@ -39,21 +39,39 @@ export default class Game extends cc.Component {
         }, time * 1000);
     }
 
-    initGame(): void {
+    initGame(isfirst: boolean = false): void {
+
+
+        Constants.uiManager.onOpen(1);
+        Constants.uiManager.onOpen(0);
+
+        if (isfirst) {
+            this.registerEvent();
+            return;
+        }
+
         if (Constants.currState == Constants.GAME_STATE.GameHome) return
         Constants.currState = Constants.GAME_STATE.GameHome;
+
         Constants.soundManager.playClip(0, true);
         setTimeout(() => {
             Constants.soundManager.playClip(1);
         }, 500);
 
-        this.player.init();
         this.bgCtrl.init();
-        Constants.uiManager.onOpen(0);
+        this.player.init();
+
+
         this.node.emit(Constants.GAME_EVENT.APPLY_DATA_TO_GAME_PLAY_UI);
         this.node.emit(Constants.GAME_EVENT.COUNT_DOWN_HOMESCREEN, 2);
-        Constants.uiManager.onOpen(1);
+
         setTimeout(this.startMove.bind(this), 6000);
+    }
+
+    registerEvent(): void {
+        console.log("registerEvent");
+
+        this.node.once(cc.Node.EventType.TOUCH_START, this.initGame.bind(this, false), this);
     }
 
     startMove(): void {
@@ -71,7 +89,7 @@ export default class Game extends cc.Component {
         this.player.stopMove();
 
         setTimeout(() => {
-            Constants.soundManager.stopClip(0);
+
             Constants.currState = Constants.GAME_STATE.GameResult;
             Constants.uiManager.onClose(1);
             Constants.uiManager.onOpen(2);
