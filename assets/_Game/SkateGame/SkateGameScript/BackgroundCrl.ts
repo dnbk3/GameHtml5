@@ -142,11 +142,11 @@ export default class BackgroundCrl extends cc.Component {
         poolMember.init(i);
         switch (i) {
             case 0:
-                return -250;
+                return -260;
             case 1:
                 return 0;
             case 2:
-                return 250;
+                return 260;
             default:
                 return 0;
         }
